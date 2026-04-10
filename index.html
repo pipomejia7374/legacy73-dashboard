@@ -1,713 +1,528 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Legacy 73, LLC — Partner Dashboard</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LEGACY 73 LLC — Terminal</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
   <style>
     :root {
-      --bg:        #1B1B2F;
-      --panel:     #22223a;
-      --border:    #2D4A7A;
-      --gold:      #E2B93B;
-      --white:     #E8E8E8;
-      --cyan:      #5BB8F5;
-      --green:     #4CAF84;
-      --red:       #E05C5C;
-      --muted:     #888;
-      --radius:    12px;
+      --bg:          #0b0b0b;
+      --bg2:         #111111;
+      --bg3:         #181818;
+      --bg4:         #1f1f1f;
+      --amber:       #ffaa00;
+      --amber-dim:   #cc8800;
+      --amber-faint: #44330a;
+      --green:       #00cc55;
+      --red:         #ff3333;
+      --blue:        #3399ff;
+      --text:        #ddaa55;
+      --text-dim:    #886633;
+      --text-faint:  #554422;
+      --white:       #e8e8d0;
+      --border:      #2a2a1a;
+      --border2:     #3a3a20;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--white);
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      min-height: 100vh;
-      padding: 0 0 40px 0;
+    html, body { background: var(--bg); color: var(--text); font-family: 'Courier New', Courier, monospace; font-size: 13px; height: 100%; }
+
+    /* ── HEADER ─────────────────────────────────────────────────── */
+    #header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 16px; background: var(--bg2); border-bottom: 2px solid var(--amber-dim);
+    }
+    #header .brand { font-size: 18px; font-weight: bold; color: var(--amber); letter-spacing: 3px; }
+    #header .brand span { font-size: 11px; color: var(--text-dim); display: block; letter-spacing: 1px; }
+    #header .hdr-right { text-align: right; font-size: 11px; color: var(--text-dim); line-height: 1.6; }
+    #header .hdr-price { font-size: 22px; color: var(--amber); font-weight: bold; }
+    #header .hdr-chg { font-size: 13px; margin-left: 8px; }
+    .up { color: var(--green); } .dn { color: var(--red); } .neu { color: var(--text-dim); }
+
+    /* ── TICKER ──────────────────────────────────────────────────── */
+    #ticker-wrap {
+      background: #0d0d00; border-bottom: 1px solid var(--border2);
+      overflow: hidden; white-space: nowrap; padding: 4px 0;
+    }
+    #ticker-track { display: inline-block; animation: scroll-left 60s linear infinite; }
+    #ticker-track:hover { animation-play-state: paused; }
+    .tick-item { display: inline-block; padding: 0 20px; font-size: 12px; }
+    .tick-item .t-label { color: var(--amber-dim); }
+    .tick-item .t-val { color: var(--white); margin: 0 2px; }
+    .tick-sep { color: var(--text-faint); margin: 0 4px; }
+    @keyframes scroll-left { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
+
+    /* ── TABS ────────────────────────────────────────────────────── */
+    #tabs { display: flex; background: var(--bg2); border-bottom: 1px solid var(--border2); padding: 0 16px; }
+    .tab-btn {
+      padding: 8px 20px; font-family: inherit; font-size: 12px; font-weight: bold;
+      letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
+      background: none; border: none; border-bottom: 3px solid transparent;
+      color: var(--text-dim); transition: color .2s, border-color .2s;
+    }
+    .tab-btn:hover { color: var(--amber); }
+    .tab-btn.active { color: var(--amber); border-bottom-color: var(--amber); }
+
+    /* ── TAB PANELS ──────────────────────────────────────────────── */
+    .tab-panel { display: none; padding: 16px; }
+    .tab-panel.active { display: block; }
+
+    /* ── STAT GRID ───────────────────────────────────────────────── */
+    .stat-grid { display: grid; gap: 10px; }
+    .sg-2 { grid-template-columns: repeat(2, 1fr); }
+    .sg-3 { grid-template-columns: repeat(3, 1fr); }
+    .sg-4 { grid-template-columns: repeat(4, 1fr); }
+    .sg-5 { grid-template-columns: repeat(5, 1fr); }
+    @media (max-width: 900px) { .sg-5 { grid-template-columns: repeat(3, 1fr); } .sg-4 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) {
+      .sg-3, .sg-4, .sg-5 { grid-template-columns: repeat(2, 1fr); }
+      .sg-2 { grid-template-columns: 1fr; }
     }
 
-    /* ── Header ── */
-    header {
-      background: linear-gradient(135deg, #12122a 0%, #1B1B2F 100%);
-      border-bottom: 2px solid var(--border);
-      padding: 22px 32px 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .logo-area h1 {
-      font-size: 1.55rem;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.02em;
-    }
-    .logo-area p {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 3px;
-    }
-    .header-meta {
-      text-align: right;
-    }
-    .header-meta .updated-label {
-      font-size: 0.72rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .header-meta .updated-val {
-      font-size: 0.92rem;
-      color: var(--white);
-      font-weight: 600;
-    }
-    .pulse-dot {
-      display: inline-block;
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--green);
-      margin-right: 6px;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%,100% { opacity: 1; }
-      50%      { opacity: 0.3; }
-    }
-
-    /* ── Grid ── */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 18px;
-      padding: 28px 32px 0;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    /* ── Stat cards ── */
     .stat-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+      background: var(--bg3); border: 1px solid var(--border); border-left: 3px solid var(--amber-dim);
+      padding: 10px 12px; border-radius: 2px;
     }
-    .stat-card .label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-    }
-    .stat-card .value {
-      font-size: 1.85rem;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1.1;
-    }
-    .stat-card .sub {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-    .stat-card .change {
-      font-size: 0.88rem;
-      font-weight: 600;
-      margin-top: 4px;
-    }
-    .change.up   { color: var(--green); }
-    .change.down { color: var(--red); }
-    .change.flat { color: var(--muted); }
+    .stat-card .sc-label { font-size: 10px; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+    .stat-card .sc-val { font-size: 20px; font-weight: bold; color: var(--amber); line-height: 1.1; }
+    .stat-card .sc-sub { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+    .stat-card.green-l { border-left-color: var(--green); }
+    .stat-card.red-l   { border-left-color: var(--red); }
+    .stat-card.blue-l  { border-left-color: var(--blue); }
 
-    /* ── Chart panels ── */
-    .chart-panel {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 22px 22px 16px;
-      grid-column: 1 / -1;
+    /* ── SECTION TITLE ───────────────────────────────────────────── */
+    .sec-title {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--amber-dim); border-bottom: 1px solid var(--border2);
+      padding-bottom: 4px; margin: 18px 0 10px 0;
     }
-    .chart-panel.half {
-      grid-column: span 2;
-    }
-    .chart-panel h2 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--gold);
-      margin-bottom: 16px;
-      letter-spacing: 0.03em;
-    }
-    .chart-wrap { position: relative; height: 280px; }
-    .chart-wrap.tall { height: 340px; }
+    .sec-title:first-child { margin-top: 0; }
 
-    /* ── Ownership panel ── */
-    .ownership-panel {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 22px 22px;
+    /* ── CHART CONTAINER ─────────────────────────────────────────── */
+    .chart-wrap {
+      background: var(--bg3); border: 1px solid var(--border); border-radius: 2px;
+      padding: 12px; position: relative;
     }
-    .ownership-panel h2 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--gold);
-      margin-bottom: 18px;
-    }
-    .member-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 16px;
-    }
-    .member-row:last-child { margin-bottom: 0; }
-    .member-avatar {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700;
-      font-size: 0.95rem;
-      flex-shrink: 0;
-    }
-    .av-diego { background: #2D4A7A; color: var(--gold); }
-    .av-john  { background: #3a2d7a; color: var(--cyan); }
-    .member-info { flex: 1; min-width: 0; }
-    .member-name { font-size: 0.88rem; font-weight: 600; color: var(--white); }
-    .member-shares { font-size: 0.72rem; color: var(--muted); }
-    .member-pct  { font-size: 1.15rem; font-weight: 700; color: var(--white); }
-    .member-val  { font-size: 0.78rem; color: var(--muted); }
-    .bar-track {
-      height: 8px;
-      border-radius: 4px;
-      background: var(--border);
-      margin-top: 6px;
-      overflow: hidden;
-    }
-    .bar-fill {
-      height: 100%;
-      border-radius: 4px;
-      transition: width 0.8s ease;
-    }
-    .fill-diego { background: linear-gradient(90deg, #2D4A7A, var(--gold)); }
-    .fill-john  { background: linear-gradient(90deg, #3a2d7a, var(--cyan)); }
+    .chart-wrap canvas { max-height: 260px; }
 
-    /* ── Donut legend ── */
-    .donut-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 28px;
-      flex-wrap: wrap;
-      margin-top: 16px;
+    /* ── MEMBERS TABLE ───────────────────────────────────────────── */
+    .mem-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .mem-table th {
+      text-align: right; padding: 6px 10px; font-size: 10px; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--border2);
+      background: var(--bg2); white-space: nowrap;
     }
-    .donut-canvas-wrap { position: relative; width: 160px; height: 160px; flex-shrink: 0; }
-    .donut-center {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      pointer-events: none;
+    .mem-table th:first-child { text-align: left; }
+    .mem-table td {
+      text-align: right; padding: 7px 10px; border-bottom: 1px solid var(--border);
+      white-space: nowrap; color: var(--white);
     }
-    .donut-center .dc-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-    .donut-center .dc-val   { font-size: 0.85rem; font-weight: 700; color: var(--white); }
+    .mem-table td:first-child { text-align: left; color: var(--amber); font-weight: bold; }
+    .mem-table tr:hover td { background: var(--bg4); }
+    .mem-table .pct-bar {
+      display: inline-block; height: 3px; background: var(--amber-dim); margin-left: 4px;
+      vertical-align: middle;
+    }
+    .mem-table .total-row td { color: var(--amber-dim); font-style: italic; border-top: 1px solid var(--border2); }
 
-    /* ── Responsive ── */
-    @media (max-width: 760px) {
-      header { padding: 16px 18px; }
-      .grid  { padding: 16px 14px 0; gap: 12px; }
-      .chart-panel.half { grid-column: 1 / -1; }
-      .chart-wrap { height: 220px; }
-      .chart-wrap.tall { height: 260px; }
-      .logo-area h1 { font-size: 1.2rem; }
+    /* ── PERF CARDS ──────────────────────────────────────────────── */
+    .perf-card {
+      background: var(--bg3); border: 1px solid var(--border); padding: 12px 14px; border-radius: 2px; text-align: center;
     }
+    .perf-card .pc-period { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin-bottom: 6px; }
+    .perf-card .pc-pct    { font-size: 24px; font-weight: bold; line-height: 1; }
+    .perf-card .pc-usd    { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
 
-    /* ── Footer ── */
-    footer {
-      text-align: center;
-      padding: 32px 16px 0;
-      font-size: 0.72rem;
-      color: var(--muted);
+    /* ── RISK METERS ─────────────────────────────────────────────── */
+    .risk-meter {
+      background: var(--bg3); border: 1px solid var(--border); padding: 12px 14px; border-radius: 2px;
     }
+    .risk-meter .rm-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin-bottom: 6px; }
+    .risk-meter .rm-val   { font-size: 20px; font-weight: bold; }
+    .rm-bar-bg { background: var(--bg4); height: 5px; border-radius: 2px; margin-top: 8px; overflow: hidden; }
+    .rm-bar    { height: 100%; border-radius: 2px; transition: width .5s; }
+
+    /* ── MA INDICATOR ────────────────────────────────────────────── */
+    .ma-row { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg3); border: 1px solid var(--border); border-radius: 2px; }
+    .ma-row .ma-name  { font-size: 11px; color: var(--text-dim); width: 60px; }
+    .ma-row .ma-price { font-size: 18px; font-weight: bold; color: var(--amber); min-width: 90px; }
+    .ma-row .ma-vs    { font-size: 12px; margin-left: auto; min-width: 90px; text-align: right; }
+    .ma-row .ma-bar-wrap { flex: 1; }
+    .ma-bar-track { height: 4px; background: var(--bg4); border-radius: 2px; position: relative; }
+    .ma-zero-line { position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--text-faint); }
+
+    /* ── LOADING ─────────────────────────────────────────────────── */
+    #loading { padding: 40px; text-align: center; color: var(--text-dim); font-size: 14px; letter-spacing: 2px; animation: blink 1s step-end infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* ── UPDATED BADGE ───────────────────────────────────────────── */
+    .updated-badge { font-size: 10px; color: var(--text-faint); margin-top: 4px; }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="logo-area">
-    <h1>Legacy 73, LLC</h1>
-    <p>Partner Investment Dashboard · Schwab #3139-7611</p>
+<!-- HEADER -->
+<div id="header">
+  <div class="brand">
+    LEGACY 73 LLC
+    <span>PORTFOLIO TERMINAL v2.0</span>
   </div>
-  <div class="header-meta">
-    <div class="updated-label"><span class="pulse-dot"></span>Last Updated</div>
-    <div class="updated-val" id="hdr-updated">—</div>
+  <div id="hdr-center" style="display:flex;align-items:center;gap:12px;">
+    <span class="hdr-price" id="hdr-sp">—</span>
+    <span class="hdr-chg" id="hdr-chg">—</span>
   </div>
-</header>
-
-<!-- Stat Cards -->
-<div class="grid" id="stats-grid">
-  <div class="stat-card">
-    <div class="label">Portfolio Value</div>
-    <div class="value" id="s-portfolio">—</div>
-    <div class="sub">Total (Schwab + Cash)</div>
-    <div class="change flat" id="s-portfolio-chg">—</div>
-  </div>
-  <div class="stat-card">
-    <div class="label">Share Price</div>
-    <div class="value" id="s-price">—</div>
-    <div class="sub">Per unit</div>
-    <div class="change flat" id="s-price-chg">—</div>
-  </div>
-  <div class="stat-card">
-    <div class="label">50-Day Moving Avg</div>
-    <div class="value" id="s-ma50">—</div>
-    <div class="sub">Share price MA (50d)</div>
-    <div class="change flat" id="s-ma50-vs">—</div>
-  </div>
-  <div class="stat-card">
-    <div class="label">Total Shares</div>
-    <div class="value" id="s-shares">—</div>
-    <div class="sub">Units outstanding</div>
+  <div class="hdr-right">
+    <span id="hdr-total">—</span><br>
+    <span id="hdr-time" style="font-size:10px;">—</span><br>
+    <span class="updated-badge" id="hdr-updated">—</span>
   </div>
 </div>
 
-<!-- Charts + Ownership -->
-<div class="grid" style="margin-top:18px;">
-
-  <!-- Portfolio Value — 3 Month -->
-  <div class="chart-panel" style="grid-column: 1/-1;">
-    <h2>Portfolio Value — Last 3 Months</h2>
-    <div class="chart-wrap tall"><canvas id="chart3m"></canvas></div>
-  </div>
-
-  <!-- Share Price + 50MA (half) -->
-  <div class="chart-panel half">
-    <h2>Share Price &amp; 50-Day Moving Average</h2>
-    <div class="chart-wrap"><canvas id="chartPrice"></canvas></div>
-  </div>
-
-  <!-- Ownership % (half) -->
-  <div class="ownership-panel" style="grid-column: span 2;">
-    <h2>Member Ownership</h2>
-
-    <div class="member-row">
-      <div class="member-avatar av-diego">DM</div>
-      <div class="member-info">
-        <div class="member-name">D.M.</div>
-        <div class="member-shares" id="diego-shares">— shares</div>
-        <div class="bar-track"><div class="bar-fill fill-diego" id="diego-bar" style="width:0%"></div></div>
-      </div>
-      <div style="text-align:right;">
-        <div class="member-pct" id="diego-pct">—</div>
-        <div class="member-val" id="diego-val">—</div>
-      </div>
-    </div>
-
-    <div class="member-row">
-      <div class="member-avatar av-john">JV</div>
-      <div class="member-info">
-        <div class="member-name">J.V.</div>
-        <div class="member-shares" id="john-shares">— shares</div>
-        <div class="bar-track"><div class="bar-fill fill-john" id="john-bar" style="width:0%"></div></div>
-      </div>
-      <div style="text-align:right;">
-        <div class="member-pct" id="john-pct">—</div>
-        <div class="member-val" id="john-val">—</div>
-      </div>
-    </div>
-
-    <div class="donut-wrap">
-      <div class="donut-canvas-wrap">
-        <canvas id="chartDonut"></canvas>
-        <div class="donut-center">
-          <div class="dc-label">Total</div>
-          <div class="dc-val" id="donut-total">—</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- All-Time Portfolio -->
-  <div class="chart-panel" style="grid-column: 1/-1;">
-    <h2>Portfolio Value — All Time (Since Jan 2024)</h2>
-    <div class="chart-wrap"><canvas id="chartAllTime"></canvas></div>
-  </div>
-
+<!-- TICKER -->
+<div id="ticker-wrap">
+  <div id="ticker-track">Loading market data…</div>
 </div>
 
-<footer>
-  <p>Legacy 73, LLC · Private · For Partner Use Only · Data sourced from Charles Schwab</p>
-  <p style="margin-top:4px;">Auto-refreshes daily at 4:15 PM ET · Page refreshes automatically every 5 minutes</p>
-</footer>
+<!-- TABS -->
+<div id="tabs">
+  <button class="tab-btn active" onclick="showTab('overview',this)">Overview</button>
+  <button class="tab-btn" onclick="showTab('members',this)">Members</button>
+  <button class="tab-btn" onclick="showTab('performance',this)">Performance</button>
+  <button class="tab-btn" onclick="showTab('risk',this)">Risk</button>
+</div>
+
+<!-- ── OVERVIEW TAB ───────────────────────────────────────────────────────── -->
+<div id="tab-overview" class="tab-panel active">
+  <div id="loading">■ LOADING DATA ■</div>
+  <div id="ov-content" style="display:none;">
+    <div class="sec-title">Portfolio Summary</div>
+    <div class="stat-grid sg-4" id="ov-cards"></div>
+
+    <div class="sec-title">Performance Overview</div>
+    <div class="stat-grid sg-4" id="ov-perf"></div>
+
+    <div class="sec-title">3-Month Price Chart  (share price + 50-day MA)</div>
+    <div class="chart-wrap">
+      <canvas id="chart3m"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- ── MEMBERS TAB ────────────────────────────────────────────────────────── -->
+<div id="tab-members" class="tab-panel">
+  <div class="sec-title">Participation — Type A &amp; B Shares</div>
+  <div style="overflow-x:auto;">
+    <table class="mem-table" id="mem-table">
+      <thead>
+        <tr>
+          <th>Member</th>
+          <th>Class A</th>
+          <th>Class B</th>
+          <th>Total Shares</th>
+          <th>% Ownership</th>
+          <th>$ Value</th>
+          <th>Day Change</th>
+        </tr>
+      </thead>
+      <tbody id="mem-tbody"></tbody>
+    </table>
+  </div>
+
+  <div class="sec-title">Consolidated Participation (Participación Consolidada)</div>
+  <div class="stat-grid sg-3" id="mem-totals"></div>
+</div>
+
+<!-- ── PERFORMANCE TAB ────────────────────────────────────────────────────── -->
+<div id="tab-performance" class="tab-panel">
+  <div class="sec-title">Rendimiento — Returns by Period</div>
+  <div class="stat-grid sg-5" id="perf-cards"></div>
+
+  <div class="sec-title">Extremos &amp; CAGR</div>
+  <div class="stat-grid sg-3" id="perf-stats"></div>
+
+  <div class="sec-title">All-Time Share Price  (monthly sampling)</div>
+  <div class="chart-wrap">
+    <canvas id="chartAllTime"></canvas>
+  </div>
+</div>
+
+<!-- ── RISK TAB ───────────────────────────────────────────────────────────── -->
+<div id="tab-risk" class="tab-panel">
+  <div class="sec-title">Extremos — Price Extremes</div>
+  <div class="stat-grid sg-4" id="risk-extremes"></div>
+
+  <div class="sec-title">Riesgo &amp; Drawdown</div>
+  <div id="dd-meter" class="risk-meter" style="margin-bottom:10px;">
+    <div class="rm-label">Drawdown from All-Time High</div>
+    <div class="rm-val dn" id="dd-pct">—</div>
+    <div id="dd-days" style="font-size:11px;color:var(--text-dim);margin-top:2px;"></div>
+    <div class="rm-bar-bg" style="margin-top:10px;"><div class="rm-bar" id="dd-bar" style="background:var(--red);width:0%;"></div></div>
+  </div>
+
+  <div class="sec-title">Promedios Móviles — Moving Averages</div>
+  <div id="ma-cards" style="display:grid;gap:8px;"></div>
+
+  <div class="sec-title">Price vs Moving Averages</div>
+  <div class="stat-grid sg-3" id="ma-stats"></div>
+</div>
 
 <script>
-// ── Helpers ──────────────────────────────────────────────────────────────────
+// ── UTILITIES ──────────────────────────────────────────────────────────────
 const $ = id => document.getElementById(id);
-const fmt = (n, decimals=2) =>
-  new Intl.NumberFormat('en-US', { style:'currency', currency:'USD',
-    minimumFractionDigits: decimals, maximumFractionDigits: decimals }).format(n);
-const fmtN = (n, d=0) =>
-  new Intl.NumberFormat('en-US', { minimumFractionDigits:d, maximumFractionDigits:d }).format(n);
-const arrow = (n) => n > 0 ? '▲' : n < 0 ? '▼' : '–';
-const cls   = (n) => n > 0 ? 'up' : n < 0 ? 'down' : 'flat';
-const dateLabel = iso => {
-  const d = new Date(iso + 'T00:00:00');
-  return d.toLocaleDateString('en-US', { month:'short', day:'numeric' });
-};
+const fmt$ = v => '$' + v.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+const fmt$4 = v => '$' + v.toLocaleString('en-US', {minimumFractionDigits:4, maximumFractionDigits:4});
+const fmtPct = (v, dec=2) => (v >= 0 ? '+' : '') + v.toFixed(dec) + '%';
+const upDn = v => v > 0 ? 'up' : v < 0 ? 'dn' : 'neu';
+const clr = v => v > 0 ? '#00cc55' : v < 0 ? '#ff3333' : '#886633';
 
-// ── Chart defaults ────────────────────────────────────────────────────────────
-Chart.defaults.color = '#888';
-Chart.defaults.font.family = "'Segoe UI', system-ui, sans-serif";
+function statCard(label, val, sub, colorClass='') {
+  return `<div class="stat-card ${colorClass}">
+    <div class="sc-label">${label}</div>
+    <div class="sc-val">${val}</div>
+    ${sub ? `<div class="sc-sub">${sub}</div>` : ''}
+  </div>`;
+}
+
+function perfCard(period, pct, usd) {
+  const c = clr(pct);
+  return `<div class="perf-card">
+    <div class="pc-period">${period}</div>
+    <div class="pc-pct" style="color:${c};">${fmtPct(pct)}</div>
+    <div class="pc-usd" style="color:${c};">${usd >= 0 ? '+' : ''}${fmt$4(usd)}</div>
+  </div>`;
+}
+
+// ── TAB SWITCHING ──────────────────────────────────────────────────────────
+let charts = {};
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  $('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── TICKER ─────────────────────────────────────────────────────────────────
+function buildTicker(d) {
+  const p = d.portfolio;
+  const items = [
+    { label: 'L73',   val: fmt$4(p.share_price), chg: fmtPct(p.change_1d_pct), c: clr(p.change_1d_pct) },
+    { label: 'NAV',   val: fmt$(p.total_value),   chg: '',                       c: '#ddaa55' },
+    { label: 'MA-50', val: p.ma50 ? fmt$4(p.ma50) : 'N/A', chg: '',             c: '#3399ff' },
+    { label: 'MA-30', val: fmt$4(p.ma30), chg: fmtPct(p.price_vs_ma30),         c: clr(p.price_vs_ma30) },
+    { label: 'MA-90', val: fmt$4(p.ma90), chg: fmtPct(p.price_vs_ma90),         c: clr(p.price_vs_ma90) },
+  ];
+  Object.values(d.members).forEach(m => {
+    items.push({
+      label: m.name.toUpperCase(),
+      val: fmt$(m.value),
+      chg: (m.change_1d >= 0 ? '+' : '') + fmt$(m.change_1d),
+      c: clr(m.change_1d)
+    });
+  });
+
+  let html = items.map(i =>
+    `<span class="tick-item"><span class="t-label">${i.label}</span>&nbsp;<span class="t-val">${i.val}</span><span class="tick-sep">|</span><span style="color:${i.c};">${i.chg}</span></span>`
+  ).join('<span class="tick-sep">&nbsp;◆&nbsp;</span>');
+  $('ticker-track').innerHTML = html + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + html;
+}
+
+// ── CHART.JS DEFAULTS ──────────────────────────────────────────────────────
+Chart.defaults.color = '#886633';
+Chart.defaults.font.family = "'Courier New', monospace";
 Chart.defaults.font.size = 11;
 
-const BG    = '#1B1B2F';
-const PANEL = '#22223a';
-const GRID  = '#2D4A7A';
-const GOLD  = '#E2B93B';
-const WHITE = '#E8E8E8';
-const CYAN  = '#5BB8F5';
-
-function baseChartOpts(yLeftLabel, yRightLabel) {
-  return {
-    responsive: true,
-    maintainAspectRatio: false,
-    interaction: { mode:'index', intersect:false },
-    plugins: {
-      legend: { position:'bottom', labels:{ color:WHITE, boxWidth:14, padding:16 } },
-      tooltip: {
-        backgroundColor: '#12122a',
-        borderColor: GRID,
-        borderWidth: 1,
-        titleColor: GOLD,
-        bodyColor: WHITE,
-        callbacks: {
-          label: ctx => {
-            const v = ctx.parsed.y;
-            if (v === null || v === undefined) return null;
-            const prefix = ctx.dataset.yAxisID === 'yLeft' ? '$' : '$';
-            return ` ${ctx.dataset.label}: ${fmt(v, ctx.dataset.yAxisID === 'yLeft' ? 0 : 4)}`;
-          }
-        }
-      }
-    },
-    scales: {
-      x: {
-        ticks: { color:'#888', maxRotation:45, minRotation:0 },
-        grid:  { color: GRID + '33' }
-      },
-      yLeft: {
-        type: 'linear',
-        position: 'left',
-        ticks: { color: GOLD, callback: v => '$' + fmtN(v) },
-        grid:  { color: GRID + '55' }
-      },
-      yRight: {
-        type: 'linear',
-        position: 'right',
-        ticks: { color: WHITE, callback: v => '$' + v.toFixed(2) },
-        grid:  { drawOnChartArea: false }
-      }
-    }
-  };
-}
-
-// ── 3-Month Chart ─────────────────────────────────────────────────────────────
-let chart3m, chartPrice, chartAllTime, chartDonut;
-
-function buildCharts(data) {
-  const d3m = data.chart_3m;
-
-  // Sample labels — show every 7th label for 3m chart
-  const labels3m = d3m.map((r,i) => {
-    if (i % 7 === 0 || i === d3m.length-1) return dateLabel(r.date);
-    return '';
-  });
-
-  const opts3m = baseChartOpts();
-  opts3m.scales.yLeft.min  = 80000;
-  opts3m.scales.yLeft.max  = 200000;
-  opts3m.scales.yLeft.ticks.stepSize = 40000;
-  opts3m.scales.yRight.min = 4;
-  opts3m.scales.yRight.max = 16;
-  opts3m.scales.yRight.ticks.stepSize = 2;
-
-  chart3m = new Chart($('chart3m'), {
+function makeChart(id, labels, datasets) {
+  if (charts[id]) charts[id].destroy();
+  const ctx = $(id).getContext('2d');
+  charts[id] = new Chart(ctx, {
     type: 'line',
-    data: {
-      labels: labels3m,
-      datasets: [
-        {
-          label: 'Portfolio Value',
-          data: d3m.map(r => r.total),
-          yAxisID: 'yLeft',
-          borderColor: GOLD,
-          backgroundColor: GOLD + '18',
-          fill: true,
-          tension: 0.3,
-          pointRadius: 0,
-          pointHoverRadius: 5,
-          borderWidth: 2
-        },
-        {
-          label: 'Share Price',
-          data: d3m.map(r => r.share_price),
-          yAxisID: 'yRight',
-          borderColor: WHITE,
-          backgroundColor: 'transparent',
-          tension: 0.3,
-          pointRadius: 0,
-          pointHoverRadius: 5,
-          borderWidth: 1.5
-        },
-        {
-          label: '50-Day MA',
-          data: d3m.map(r => r.ma50),
-          yAxisID: 'yRight',
-          borderColor: CYAN,
-          backgroundColor: 'transparent',
-          borderDash: [6, 3],
-          tension: 0.3,
-          pointRadius: 0,
-          pointHoverRadius: 0,
-          borderWidth: 1.5
-        }
-      ]
-    },
-    options: opts3m
-  });
-
-  // ── Share Price chart (last 3m) ───────────────────────────────────────────
-  const optsPrice = {
-    responsive: true,
-    maintainAspectRatio: false,
-    interaction: { mode:'index', intersect:false },
-    plugins: {
-      legend: { position:'bottom', labels:{ color:WHITE, boxWidth:14, padding:16 } },
-      tooltip: {
-        backgroundColor:'#12122a', borderColor:GRID, borderWidth:1,
-        titleColor:GOLD, bodyColor:WHITE,
-        callbacks: { label: ctx => ` ${ctx.dataset.label}: $${ctx.parsed.y.toFixed(4)}` }
-      }
-    },
-    scales: {
-      x: { ticks:{ color:'#888', maxRotation:45 }, grid:{ color: GRID+'33' } },
-      y: {
-        ticks: { color:WHITE, callback: v => '$'+v.toFixed(2) },
-        grid:  { color: GRID+'55' }
-      }
-    }
-  };
-
-  chartPrice = new Chart($('chartPrice'), {
-    type: 'line',
-    data: {
-      labels: labels3m,
-      datasets: [
-        {
-          label: 'Share Price',
-          data: d3m.map(r => r.share_price),
-          borderColor: WHITE,
-          backgroundColor: WHITE + '12',
-          fill: true,
-          tension: 0.3,
-          pointRadius: 0,
-          pointHoverRadius: 5,
-          borderWidth: 2
-        },
-        {
-          label: '50-Day MA',
-          data: d3m.map(r => r.ma50),
-          borderColor: CYAN,
-          backgroundColor: 'transparent',
-          borderDash: [6,3],
-          tension: 0.3,
-          pointRadius: 0,
-          pointHoverRadius: 5,
-          borderWidth: 1.5
-        }
-      ]
-    },
-    options: optsPrice
-  });
-
-  // ── All-Time Chart ────────────────────────────────────────────────────────
-  // Downsample to monthly for performance
-  const allRaw = data.chart_alltime;
-  const monthly = [];
-  let lastMonth = null;
-  for (const r of allRaw) {
-    const m = r.date.slice(0, 7);
-    if (m !== lastMonth) { monthly.push(r); lastMonth = m; }
-  }
-  // Always include the latest point
-  if (monthly[monthly.length-1].date !== allRaw[allRaw.length-1].date)
-    monthly.push(allRaw[allRaw.length-1]);
-
-  const optsAT = {
-    responsive: true, maintainAspectRatio: false,
-    interaction: { mode:'index', intersect:false },
-    plugins: {
-      legend: { position:'bottom', labels:{ color:WHITE, boxWidth:14, padding:16 } },
-      tooltip: {
-        backgroundColor:'#12122a', borderColor:GRID, borderWidth:1,
-        titleColor:GOLD, bodyColor:WHITE,
-        callbacks: {
-          label: ctx => {
-            if (ctx.dataset.yAxisID === 'yLeft') return ` Portfolio: ${fmt(ctx.parsed.y, 0)}`;
-            return ` Share Price: $${ctx.parsed.y.toFixed(4)}`;
-          }
-        }
-      }
-    },
-    scales: {
-      x: { ticks:{ color:'#888', maxRotation:45 }, grid:{ color:GRID+'33' } },
-      yLeft: {
-        type:'linear', position:'left',
-        ticks:{ color:GOLD, callback: v => '$'+fmtN(v) },
-        grid: { color:GRID+'55' }
-      },
-      yRight: {
-        type:'linear', position:'right',
-        ticks:{ color:WHITE, callback: v => '$'+v.toFixed(2) },
-        grid:{ drawOnChartArea:false }
-      }
-    }
-  };
-
-  chartAllTime = new Chart($('chartAllTime'), {
-    type: 'line',
-    data: {
-      labels: monthly.map(r => {
-        const d = new Date(r.date+'T00:00:00');
-        return d.toLocaleDateString('en-US',{month:'short', year:'2-digit'});
-      }),
-      datasets: [
-        {
-          label: 'Portfolio Value',
-          data: monthly.map(r => r.total),
-          yAxisID: 'yLeft',
-          borderColor: GOLD,
-          backgroundColor: GOLD+'18',
-          fill: true,
-          tension: 0.4,
-          pointRadius: 2,
-          pointHoverRadius: 5,
-          borderWidth: 2
-        },
-        {
-          label: 'Share Price',
-          data: monthly.map(r => r.share_price),
-          yAxisID: 'yRight',
-          borderColor: WHITE,
-          backgroundColor: 'transparent',
-          tension: 0.4,
-          pointRadius: 2,
-          pointHoverRadius: 5,
-          borderWidth: 1.5
-        }
-      ]
-    },
-    options: optsAT
-  });
-
-  // ── Donut ─────────────────────────────────────────────────────────────────
-  chartDonut = new Chart($('chartDonut'), {
-    type: 'doughnut',
-    data: {
-      labels: ['D.M.', 'J.V.'],
-      datasets: [{
-        data: [data.members.diego.pct, data.members.john.pct],
-        backgroundColor: ['#2D4A7A', '#3a2d7a'],
-        borderColor: [GOLD, CYAN],
-        borderWidth: 2,
-        hoverOffset: 6
-      }]
-    },
+    data: { labels, datasets },
     options: {
-      responsive: true,
-      maintainAspectRatio: true,
-      cutout: '68%',
+      responsive: true, maintainAspectRatio: true,
+      interaction: { mode: 'index', intersect: false },
       plugins: {
-        legend: { display:false },
+        legend: { position: 'top', labels: { color: '#886633', boxWidth: 12, padding: 12 } },
         tooltip: {
-          callbacks: {
-            label: ctx => ` ${ctx.label}: ${ctx.parsed.toFixed(2)}%`
-          }
+          backgroundColor: '#111111', borderColor: '#333300', borderWidth: 1,
+          titleColor: '#ffaa00', bodyColor: '#ddaa55',
+          callbacks: { label: ctx => ' ' + ctx.dataset.label + ': $' + ctx.parsed.y.toFixed(4) }
         }
-      }
+      },
+      scales: {
+        x: { grid: { color: '#1a1a0a' }, ticks: { maxTicksLimit: 8, maxRotation: 0 } },
+        y: { grid: { color: '#1a1a0a' }, ticks: { callback: v => '$' + v.toFixed(2) } }
+      },
+      elements: { point: { radius: 0, hoverRadius: 4 } }
     }
   });
 }
 
-// ── Populate Stats ────────────────────────────────────────────────────────────
-function populateStats(data) {
-  const p = data.portfolio;
-  const m = data.members;
+// ── POPULATE DATA ──────────────────────────────────────────────────────────
+function populate(d) {
+  const p = d.portfolio;
+  const now = new Date();
 
-  // Header
-  const d = new Date(data.updated + 'T00:00:00');
-  $('hdr-updated').textContent = d.toLocaleDateString('en-US',
-    { weekday:'short', year:'numeric', month:'short', day:'numeric' });
+  // HEADER
+  $('hdr-sp').textContent  = fmt$4(p.share_price);
+  $('hdr-chg').innerHTML   = `<span class="${upDn(p.change_1d_pct)}">${fmtPct(p.change_1d_pct)}&nbsp;(${p.change_1d >= 0 ? '+' : ''}${fmt$4(p.change_1d)})</span>`;
+  $('hdr-total').textContent = 'NAV ' + fmt$(p.total_value);
+  $('hdr-time').textContent  = now.toLocaleString('en-US', {weekday:'short',year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+  $('hdr-updated').textContent = 'DATA: ' + d.updated;
 
-  // Portfolio
-  $('s-portfolio').textContent = fmt(p.total_value, 0);
-  const pc = p.change_1d_pct;
-  $('s-portfolio-chg').textContent = `${arrow(pc)} ${Math.abs(pc).toFixed(2)}% today`;
-  $('s-portfolio-chg').className = 'change ' + cls(pc);
+  buildTicker(d);
+  $('loading').style.display  = 'none';
+  $('ov-content').style.display = '';
 
-  // Share price
-  $('s-price').textContent = '$' + p.share_price.toFixed(4);
-  $('s-price-chg').textContent = `${arrow(p.change_1d)} ${arrow(p.change_1d)} $${Math.abs(p.change_1d).toFixed(4)} today`;
-  $('s-price-chg').className = 'change ' + cls(p.change_1d);
+  // ── OVERVIEW CARDS ───────────────────────────────────────────────────────
+  $('ov-cards').innerHTML = [
+    statCard('Share Price', fmt$4(p.share_price),
+      `<span class="${upDn(p.change_1d_pct)}">${fmtPct(p.change_1d_pct)}&nbsp;today</span>`),
+    statCard('Portfolio NAV', fmt$(p.total_value),
+      `<span class="${upDn(p.change_1d)}">${p.change_1d >= 0 ? '+' : ''}${fmt$(p.change_1d)}&nbsp;today</span>`),
+    statCard('CAGR', fmtPct(p.cagr), 'Annualized since Jan 1 2024', p.cagr >= 0 ? 'green-l' : 'red-l'),
+    statCard('Since Inception', fmtPct(p.change_inc_pct),
+      `${p.change_inc >= 0 ? '+' : ''}${fmt$4(p.change_inc)} / share`, p.change_inc >= 0 ? 'green-l' : 'red-l'),
+  ].join('');
 
-  // 50MA
-  $('s-ma50').textContent = '$' + p.ma50.toFixed(4);
-  const diff = p.share_price - p.ma50;
-  const above = diff >= 0;
-  $('s-ma50-vs').textContent = `${above ? '▲ Above' : '▼ Below'} MA by $${Math.abs(diff).toFixed(4)}`;
-  $('s-ma50-vs').className = 'change ' + (above ? 'up' : 'down');
+  $('ov-perf').innerHTML = [
+    statCard('1-Day',   `<span class="${upDn(p.change_1d_pct)}">${fmtPct(p.change_1d_pct)}</span>`,   fmt$4(p.change_1d)),
+    statCard('1-Week',  `<span class="${upDn(p.change_1w_pct)}">${fmtPct(p.change_1w_pct)}</span>`,   fmt$4(p.change_1w)),
+    statCard('1-Month', `<span class="${upDn(p.change_1m_pct)}">${fmtPct(p.change_1m_pct)}</span>`, fmt$4(p.change_1m)),
+    statCard('YTD',     `<span class="${upDn(p.change_ytd_pct)}">${fmtPct(p.change_ytd_pct)}</span>`, fmt$4(p.change_ytd)),
+  ].join('');
 
-  // Shares
-  $('s-shares').textContent = fmtN(m.total_shares, 2);
+  // 3M CHART
+  const c3 = d.chart_3m;
+  makeChart('chart3m',
+    c3.map(r => r.date.substring(5)),
+    [
+      { label: 'Share Price', data: c3.map(r => r.share_price), borderColor: '#ffaa00', backgroundColor: 'rgba(255,170,0,0.06)', borderWidth: 2, fill: true, tension: 0.3 },
+      { label: '50-Day MA',   data: c3.map(r => r.ma50),        borderColor: '#3399ff', backgroundColor: 'transparent',          borderWidth: 1.5, borderDash: [5,3], tension: 0.3 },
+    ]
+  );
 
-  // Members
-  $('diego-shares').textContent = fmtN(m.diego.shares, 2) + ' shares';
-  $('diego-pct').textContent    = m.diego.pct.toFixed(2) + '%';
-  $('diego-val').textContent    = fmt(m.diego.value, 0);
-  $('diego-bar').style.width    = m.diego.pct + '%';
+  // ── MEMBERS ──────────────────────────────────────────────────────────────
+  let rows = '', sumA=0, sumB=0, sumTot=0, sumVal=0, sumChg=0;
+  Object.entries(d.members).forEach(([k, m]) => {
+    const barW = Math.round(m.pct * 2.4);
+    sumA += m.shares_a; sumB += m.shares_b; sumTot += m.total_shares; sumVal += m.value; sumChg += m.change_1d;
+    rows += `<tr>
+      <td>${m.name}</td>
+      <td>${m.shares_a.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
+      <td>${m.shares_b.toLocaleString('en-US',{minimumFractionDigits:4,maximumFractionDigits:4})}</td>
+      <td>${m.total_shares.toLocaleString('en-US',{minimumFractionDigits:4,maximumFractionDigits:4})}</td>
+      <td>${m.pct.toFixed(2)}%<span class="pct-bar" style="width:${barW}px;"></span></td>
+      <td>${fmt$(m.value)}</td>
+      <td class="${upDn(m.change_1d)}">${m.change_1d >= 0 ? '+' : ''}${fmt$(m.change_1d)}</td>
+    </tr>`;
+  });
+  rows += `<tr class="total-row">
+    <td>TOTAL</td>
+    <td>${sumA.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
+    <td>${sumB.toLocaleString('en-US',{minimumFractionDigits:4,maximumFractionDigits:4})}</td>
+    <td>${sumTot.toLocaleString('en-US',{minimumFractionDigits:4,maximumFractionDigits:4})}</td>
+    <td>100.00%</td>
+    <td>${fmt$(sumVal)}</td>
+    <td class="${upDn(sumChg)}">${sumChg >= 0 ? '+' : ''}${fmt$(sumChg)}</td>
+  </tr>`;
+  $('mem-tbody').innerHTML = rows;
 
-  $('john-shares').textContent  = fmtN(m.john.shares, 2) + ' shares';
-  $('john-pct').textContent     = m.john.pct.toFixed(2) + '%';
-  $('john-val').textContent     = fmt(m.john.value, 0);
-  $('john-bar').style.width     = m.john.pct + '%';
+  $('mem-totals').innerHTML = [
+    statCard('Total Class A Shares', d.shares.total_a.toLocaleString('en-US',{minimumFractionDigits:2}), '7 members'),
+    statCard('Total Class B Shares', d.shares.total_b.toLocaleString('en-US',{minimumFractionDigits:4}), '7 members'),
+    statCard('Total Shares Outstanding', d.shares.total.toLocaleString('en-US',{minimumFractionDigits:4}), 'Class A + Class B'),
+  ].join('');
 
-  $('donut-total').textContent  = fmt(p.total_value, 0);
+  // ── PERFORMANCE ──────────────────────────────────────────────────────────
+  $('perf-cards').innerHTML = [
+    ['1-Day',          p.change_1d_pct,  p.change_1d],
+    ['1-Week',         p.change_1w_pct,  p.change_1w],
+    ['1-Month',        p.change_1m_pct,  p.change_1m],
+    ['YTD',            p.change_ytd_pct, p.change_ytd],
+    ['Since Inception',p.change_inc_pct, p.change_inc],
+  ].map(([per, pct, usd]) => perfCard(per, pct, usd)).join('');
+
+  $('perf-stats').innerHTML = [
+    statCard('CAGR (Annualized)', fmtPct(p.cagr), 'Since Jan 1 2024', p.cagr >= 0 ? 'green-l' : 'red-l'),
+    statCard('All-Time High', fmt$4(p.max_price), 'on ' + p.max_date, 'green-l'),
+    statCard('All-Time Low',  fmt$4(p.min_price), 'on ' + p.min_date, 'red-l'),
+  ].join('');
+
+  // ALL-TIME CHART
+  const ca = d.chart_alltime;
+  makeChart('chartAllTime',
+    ca.map(r => r.date.substring(0,7)),
+    [
+      { label: 'Share Price', data: ca.map(r => r.share_price), borderColor: '#ffaa00', backgroundColor: 'rgba(255,170,0,0.08)', borderWidth: 2, fill: true, tension: 0.3 },
+    ]
+  );
+
+  // ── RISK ─────────────────────────────────────────────────────────────────
+  $('risk-extremes').innerHTML = [
+    statCard('All-Time High', fmt$4(p.max_price), p.max_date, 'green-l'),
+    statCard('All-Time Low',  fmt$4(p.min_price), p.min_date, 'red-l'),
+    statCard('Current Drawdown', `<span class="dn">${fmtPct(p.drawdown_pct)}</span>`, fmt$4(p.drawdown_usd) + ' / share', 'red-l'),
+    statCard('Days Since ATH', p.days_since_max + ' days', 'since ' + p.max_date),
+  ].join('');
+
+  $('dd-pct').textContent  = fmtPct(p.drawdown_pct);
+  $('dd-days').textContent = p.days_since_max + ' calendar days since all-time high on ' + p.max_date;
+  $('dd-bar').style.width  = Math.min(Math.abs(p.drawdown_pct), 100) + '%';
+
+  // MA rows
+  const sp = p.share_price;
+  const mas = [
+    { name: 'MA-30', price: p.ma30, vs: p.price_vs_ma30 },
+    { name: 'MA-50', price: p.ma50, vs: p.ma50 ? ((sp / p.ma50) - 1) * 100 : null },
+    { name: 'MA-90', price: p.ma90, vs: p.price_vs_ma90 },
+  ];
+  $('ma-cards').innerHTML = mas.map(ma => {
+    if (!ma.price) return `<div class="ma-row"><span class="ma-name">${ma.name}</span><span style="color:var(--text-faint);">N/A</span></div>`;
+    const vsC  = clr(ma.vs);
+    const barPct = Math.min(Math.abs(ma.vs), 20) / 20 * 50;
+    const barLeft = ma.vs >= 0 ? 50 : 50 - barPct;
+    return `<div class="ma-row">
+      <span class="ma-name">${ma.name}</span>
+      <span class="ma-price">${fmt$4(ma.price)}</span>
+      <div class="ma-bar-wrap">
+        <div class="ma-bar-track">
+          <span class="ma-zero-line"></span>
+          <div style="position:absolute;left:${barLeft.toFixed(1)}%;width:${barPct.toFixed(1)}%;height:100%;background:${vsC};border-radius:2px;"></div>
+        </div>
+      </div>
+      <span class="ma-vs" style="color:${vsC};">${fmtPct(ma.vs)} vs price</span>
+    </div>`;
+  }).join('');
+
+  $('ma-stats').innerHTML = [
+    statCard('Price vs MA-30',
+      `<span class="${upDn(p.price_vs_ma30)}">${fmtPct(p.price_vs_ma30)}</span>`,
+      `Price: ${fmt$4(sp)} | MA: ${fmt$4(p.ma30)}`),
+    statCard('Price vs MA-50',
+      p.ma50 ? `<span class="${upDn(((sp/p.ma50)-1)*100)}">${fmtPct(((sp/p.ma50)-1)*100)}</span>` : 'N/A',
+      p.ma50 ? `Price: ${fmt$4(sp)} | MA: ${fmt$4(p.ma50)}` : ''),
+    statCard('Price vs MA-90',
+      `<span class="${upDn(p.price_vs_ma90)}">${fmtPct(p.price_vs_ma90)}</span>`,
+      `Price: ${fmt$4(sp)} | MA: ${fmt$4(p.ma90)}`),
+  ].join('');
 }
 
-// ── Load & Refresh ────────────────────────────────────────────────────────────
-async function loadData() {
-  // Cache-bust so browsers always get the latest data.json
-  const res = await fetch('data.json?t=' + Date.now());
-  return res.json();
-}
+// ── LOAD DATA ──────────────────────────────────────────────────────────────
+fetch('data.json?v=' + Date.now())
+  .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(d => populate(d))
+  .catch(err => {
+    $('loading').textContent = '■ ERROR: ' + err.message + ' ■';
+    $('loading').style.color = '#ff3333';
+    $('loading').style.animation = 'none';
+  });
 
-async function init() {
-  const data = await loadData();
-  populateStats(data);
-  buildCharts(data);
-
-  // Auto-refresh every 5 minutes
-  setTimeout(() => location.reload(), 5 * 60 * 1000);
-}
-
-init().catch(err => {
-  console.error('Dashboard load error:', err);
-  document.body.insertAdjacentHTML('afterbegin',
-    `<div style="background:#E05C5C;color:#fff;padding:12px 24px;font-size:0.85rem;">
-      ⚠ Could not load dashboard data. Please refresh the page.
-    </div>`);
-});
+// Live clock
+setInterval(() => {
+  const el = $('hdr-time');
+  if (el) el.textContent = new Date().toLocaleString('en-US',
+    {weekday:'short',year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+}, 30000);
 </script>
 </body>
 </html>
