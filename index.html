@@ -294,7 +294,7 @@
     <div class="member-row">
       <div class="member-avatar av-diego">DM</div>
       <div class="member-info">
-        <div class="member-name">Diego Mejia</div>
+        <div class="member-name">D.M.</div>
         <div class="member-shares" id="diego-shares">— shares</div>
         <div class="bar-track"><div class="bar-fill fill-diego" id="diego-bar" style="width:0%"></div></div>
       </div>
@@ -307,7 +307,7 @@
     <div class="member-row">
       <div class="member-avatar av-john">JV</div>
       <div class="member-info">
-        <div class="member-name">John Vargas</div>
+        <div class="member-name">J.V.</div>
         <div class="member-shares" id="john-shares">— shares</div>
         <div class="bar-track"><div class="bar-fill fill-john" id="john-bar" style="width:0%"></div></div>
       </div>
@@ -615,7 +615,7 @@ function buildCharts(data) {
   chartDonut = new Chart($('chartDonut'), {
     type: 'doughnut',
     data: {
-      labels: ['Diego Mejia', 'John Vargas'],
+      labels: ['D.M.', 'J.V.'],
       datasets: [{
         data: [data.members.diego.pct, data.members.john.pct],
         backgroundColor: ['#2D4A7A', '#3a2d7a'],
