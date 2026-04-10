@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legacy 73, LLC — Partner Dashboard</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg:        #1B1B2F;
+      --panel:     #22223a;
+      --border:    #2D4A7A;
+      --gold:      #E2B93B;
+      --white:     #E8E8E8;
+      --cyan:      #5BB8F5;
+      --green:     #4CAF84;
+      --red:       #E05C5C;
+      --muted:     #888;
+      --radius:    12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      padding: 0 0 40px 0;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #12122a 0%, #1B1B2F 100%);
+      border-bottom: 2px solid var(--border);
+      padding: 22px 32px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .logo-area h1 {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+    }
+    .logo-area p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+    .header-meta {
+      text-align: right;
+    }
+    .header-meta .updated-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .header-meta .updated-val {
+      font-size: 0.92rem;
+      color: var(--white);
+      font-weight: 600;
+    }
+    .pulse-dot {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      margin-right: 6px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50%      { opacity: 0.3; }
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+      padding: 28px 32px 0;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* ── Stat cards ── */
+    .stat-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .stat-card .label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+    .stat-card .value {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1.1;
+    }
+    .stat-card .sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .stat-card .change {
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    .change.up   { color: var(--green); }
+    .change.down { color: var(--red); }
+    .change.flat { color: var(--muted); }
+
+    /* ── Chart panels ── */
+    .chart-panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 22px 16px;
+      grid-column: 1 / -1;
+    }
+    .chart-panel.half {
+      grid-column: span 2;
+    }
+    .chart-panel h2 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 16px;
+      letter-spacing: 0.03em;
+    }
+    .chart-wrap { position: relative; height: 280px; }
+    .chart-wrap.tall { height: 340px; }
+
+    /* ── Ownership panel ── */
+    .ownership-panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 22px;
+    }
+    .ownership-panel h2 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .member-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .member-row:last-child { margin-bottom: 0; }
+    .member-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+    .av-diego { background: #2D4A7A; color: var(--gold); }
+    .av-john  { background: #3a2d7a; color: var(--cyan); }
+    .member-info { flex: 1; min-width: 0; }
+    .member-name { font-size: 0.88rem; font-weight: 600; color: var(--white); }
+    .member-shares { font-size: 0.72rem; color: var(--muted); }
+    .member-pct  { font-size: 1.15rem; font-weight: 700; color: var(--white); }
+    .member-val  { font-size: 0.78rem; color: var(--muted); }
+    .bar-track {
+      height: 8px;
+      border-radius: 4px;
+      background: var(--border);
+      margin-top: 6px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.8s ease;
+    }
+    .fill-diego { background: linear-gradient(90deg, #2D4A7A, var(--gold)); }
+    .fill-john  { background: linear-gradient(90deg, #3a2d7a, var(--cyan)); }
+
+    /* ── Donut legend ── */
+    .donut-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .donut-canvas-wrap { position: relative; width: 160px; height: 160px; flex-shrink: 0; }
+    .donut-center {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      pointer-events: none;
+    }
+    .donut-center .dc-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .donut-center .dc-val   { font-size: 0.85rem; font-weight: 700; color: var(--white); }
+
+    /* ── Responsive ── */
+    @media (max-width: 760px) {
+      header { padding: 16px 18px; }
+      .grid  { padding: 16px 14px 0; gap: 12px; }
+      .chart-panel.half { grid-column: 1 / -1; }
+      .chart-wrap { height: 220px; }
+      .chart-wrap.tall { height: 260px; }
+      .logo-area h1 { font-size: 1.2rem; }
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 32px 16px 0;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-area">
+    <h1>Legacy 73, LLC</h1>
+    <p>Partner Investment Dashboard · Schwab #3139-7611</p>
+  </div>
+  <div class="header-meta">
+    <div class="updated-label"><span class="pulse-dot"></span>Last Updated</div>
+    <div class="updated-val" id="hdr-updated">—</div>
+  </div>
+</header>
+
+<!-- Stat Cards -->
+<div class="grid" id="stats-grid">
+  <div class="stat-card">
+    <div class="label">Portfolio Value</div>
+    <div class="value" id="s-portfolio">—</div>
+    <div class="sub">Total (Schwab + Cash)</div>
+    <div class="change flat" id="s-portfolio-chg">—</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Share Price</div>
+    <div class="value" id="s-price">—</div>
+    <div class="sub">Per unit</div>
+    <div class="change flat" id="s-price-chg">—</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">50-Day Moving Avg</div>
+    <div class="value" id="s-ma50">—</div>
+    <div class="sub">Share price MA (50d)</div>
+    <div class="change flat" id="s-ma50-vs">—</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Total Shares</div>
+    <div class="value" id="s-shares">—</div>
+    <div class="sub">Units outstanding</div>
+  </div>
+</div>
+
+<!-- Charts + Ownership -->
+<div class="grid" style="margin-top:18px;">
+
+  <!-- Portfolio Value — 3 Month -->
+  <div class="chart-panel" style="grid-column: 1/-1;">
+    <h2>Portfolio Value — Last 3 Months</h2>
+    <div class="chart-wrap tall"><canvas id="chart3m"></canvas></div>
+  </div>
+
+  <!-- Share Price + 50MA (half) -->
+  <div class="chart-panel half">
+    <h2>Share Price &amp; 50-Day Moving Average</h2>
+    <div class="chart-wrap"><canvas id="chartPrice"></canvas></div>
+  </div>
+
+  <!-- Ownership % (half) -->
+  <div class="ownership-panel" style="grid-column: span 2;">
+    <h2>Member Ownership</h2>
+
+    <div class="member-row">
+      <div class="member-avatar av-diego">DM</div>
+      <div class="member-info">
+        <div class="member-name">Diego Mejia</div>
+        <div class="member-shares" id="diego-shares">— shares</div>
+        <div class="bar-track"><div class="bar-fill fill-diego" id="diego-bar" style="width:0%"></div></div>
+      </div>
+      <div style="text-align:right;">
+        <div class="member-pct" id="diego-pct">—</div>
+        <div class="member-val" id="diego-val">—</div>
+      </div>
+    </div>
+
+    <div class="member-row">
+      <div class="member-avatar av-john">JV</div>
+      <div class="member-info">
+        <div class="member-name">John Vargas</div>
+        <div class="member-shares" id="john-shares">— shares</div>
+        <div class="bar-track"><div class="bar-fill fill-john" id="john-bar" style="width:0%"></div></div>
+      </div>
+      <div style="text-align:right;">
+        <div class="member-pct" id="john-pct">—</div>
+        <div class="member-val" id="john-val">—</div>
+      </div>
+    </div>
+
+    <div class="donut-wrap">
+      <div class="donut-canvas-wrap">
+        <canvas id="chartDonut"></canvas>
+        <div class="donut-center">
+          <div class="dc-label">Total</div>
+          <div class="dc-val" id="donut-total">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- All-Time Portfolio -->
+  <div class="chart-panel" style="grid-column: 1/-1;">
+    <h2>Portfolio Value — All Time (Since Jan 2024)</h2>
+    <div class="chart-wrap"><canvas id="chartAllTime"></canvas></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Legacy 73, LLC · Private · For Partner Use Only · Data sourced from Charles Schwab</p>
+  <p style="margin-top:4px;">Auto-refreshes daily at 4:15 PM ET · Page refreshes automatically every 5 minutes</p>
+</footer>
+
+<script>
+// ── Helpers ──────────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const fmt = (n, decimals=2) =>
+  new Intl.NumberFormat('en-US', { style:'currency', currency:'USD',
+    minimumFractionDigits: decimals, maximumFractionDigits: decimals }).format(n);
+const fmtN = (n, d=0) =>
+  new Intl.NumberFormat('en-US', { minimumFractionDigits:d, maximumFractionDigits:d }).format(n);
+const arrow = (n) => n > 0 ? '▲' : n < 0 ? '▼' : '–';
+const cls   = (n) => n > 0 ? 'up' : n < 0 ? 'down' : 'flat';
+const dateLabel = iso => {
+  const d = new Date(iso + 'T00:00:00');
+  return d.toLocaleDateString('en-US', { month:'short', day:'numeric' });
+};
+
+// ── Chart defaults ────────────────────────────────────────────────────────────
+Chart.defaults.color = '#888';
+Chart.defaults.font.family = "'Segoe UI', system-ui, sans-serif";
+Chart.defaults.font.size = 11;
+
+const BG    = '#1B1B2F';
+const PANEL = '#22223a';
+const GRID  = '#2D4A7A';
+const GOLD  = '#E2B93B';
+const WHITE = '#E8E8E8';
+const CYAN  = '#5BB8F5';
+
+function baseChartOpts(yLeftLabel, yRightLabel) {
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode:'index', intersect:false },
+    plugins: {
+      legend: { position:'bottom', labels:{ color:WHITE, boxWidth:14, padding:16 } },
+      tooltip: {
+        backgroundColor: '#12122a',
+        borderColor: GRID,
+        borderWidth: 1,
+        titleColor: GOLD,
+        bodyColor: WHITE,
+        callbacks: {
+          label: ctx => {
+            const v = ctx.parsed.y;
+            if (v === null || v === undefined) return null;
+            const prefix = ctx.dataset.yAxisID === 'yLeft' ? '$' : '$';
+            return ` ${ctx.dataset.label}: ${fmt(v, ctx.dataset.yAxisID === 'yLeft' ? 0 : 4)}`;
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        ticks: { color:'#888', maxRotation:45, minRotation:0 },
+        grid:  { color: GRID + '33' }
+      },
+      yLeft: {
+        type: 'linear',
+        position: 'left',
+        ticks: { color: GOLD, callback: v => '$' + fmtN(v) },
+        grid:  { color: GRID + '55' }
+      },
+      yRight: {
+        type: 'linear',
+        position: 'right',
+        ticks: { color: WHITE, callback: v => '$' + v.toFixed(2) },
+        grid:  { drawOnChartArea: false }
+      }
+    }
+  };
+}
+
+// ── 3-Month Chart ─────────────────────────────────────────────────────────────
+let chart3m, chartPrice, chartAllTime, chartDonut;
+
+function buildCharts(data) {
+  const d3m = data.chart_3m;
+
+  // Sample labels — show every 7th label for 3m chart
+  const labels3m = d3m.map((r,i) => {
+    if (i % 7 === 0 || i === d3m.length-1) return dateLabel(r.date);
+    return '';
+  });
+
+  const opts3m = baseChartOpts();
+  opts3m.scales.yLeft.min  = 80000;
+  opts3m.scales.yLeft.max  = 200000;
+  opts3m.scales.yLeft.ticks.stepSize = 40000;
+  opts3m.scales.yRight.min = 4;
+  opts3m.scales.yRight.max = 16;
+  opts3m.scales.yRight.ticks.stepSize = 2;
+
+  chart3m = new Chart($('chart3m'), {
+    type: 'line',
+    data: {
+      labels: labels3m,
+      datasets: [
+        {
+          label: 'Portfolio Value',
+          data: d3m.map(r => r.total),
+          yAxisID: 'yLeft',
+          borderColor: GOLD,
+          backgroundColor: GOLD + '18',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          borderWidth: 2
+        },
+        {
+          label: 'Share Price',
+          data: d3m.map(r => r.share_price),
+          yAxisID: 'yRight',
+          borderColor: WHITE,
+          backgroundColor: 'transparent',
+          tension: 0.3,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          borderWidth: 1.5
+        },
+        {
+          label: '50-Day MA',
+          data: d3m.map(r => r.ma50),
+          yAxisID: 'yRight',
+          borderColor: CYAN,
+          backgroundColor: 'transparent',
+          borderDash: [6, 3],
+          tension: 0.3,
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          borderWidth: 1.5
+        }
+      ]
+    },
+    options: opts3m
+  });
+
+  // ── Share Price chart (last 3m) ───────────────────────────────────────────
+  const optsPrice = {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode:'index', intersect:false },
+    plugins: {
+      legend: { position:'bottom', labels:{ color:WHITE, boxWidth:14, padding:16 } },
+      tooltip: {
+        backgroundColor:'#12122a', borderColor:GRID, borderWidth:1,
+        titleColor:GOLD, bodyColor:WHITE,
+        callbacks: { label: ctx => ` ${ctx.dataset.label}: $${ctx.parsed.y.toFixed(4)}` }
+      }
+    },
+    scales: {
+      x: { ticks:{ color:'#888', maxRotation:45 }, grid:{ color: GRID+'33' } },
+      y: {
+        ticks: { color:WHITE, callback: v => '$'+v.toFixed(2) },
+        grid:  { color: GRID+'55' }
+      }
+    }
+  };
+
+  chartPrice = new Chart($('chartPrice'), {
+    type: 'line',
+    data: {
+      labels: labels3m,
+      datasets: [
+        {
+          label: 'Share Price',
+          data: d3m.map(r => r.share_price),
+          borderColor: WHITE,
+          backgroundColor: WHITE + '12',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          borderWidth: 2
+        },
+        {
+          label: '50-Day MA',
+          data: d3m.map(r => r.ma50),
+          borderColor: CYAN,
+          backgroundColor: 'transparent',
+          borderDash: [6,3],
+          tension: 0.3,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          borderWidth: 1.5
+        }
+      ]
+    },
+    options: optsPrice
+  });
+
+  // ── All-Time Chart ────────────────────────────────────────────────────────
+  // Downsample to monthly for performance
+  const allRaw = data.chart_alltime;
+  const monthly = [];
+  let lastMonth = null;
+  for (const r of allRaw) {
+    const m = r.date.slice(0, 7);
+    if (m !== lastMonth) { monthly.push(r); lastMonth = m; }
+  }
+  // Always include the latest point
+  if (monthly[monthly.length-1].date !== allRaw[allRaw.length-1].date)
+    monthly.push(allRaw[allRaw.length-1]);
+
+  const optsAT = {
+    responsive: true, maintainAspectRatio: false,
+    interaction: { mode:'index', intersect:false },
+    plugins: {
+      legend: { position:'bottom', labels:{ color:WHITE, boxWidth:14, padding:16 } },
+      tooltip: {
+        backgroundColor:'#12122a', borderColor:GRID, borderWidth:1,
+        titleColor:GOLD, bodyColor:WHITE,
+        callbacks: {
+          label: ctx => {
+            if (ctx.dataset.yAxisID === 'yLeft') return ` Portfolio: ${fmt(ctx.parsed.y, 0)}`;
+            return ` Share Price: $${ctx.parsed.y.toFixed(4)}`;
+          }
+        }
+      }
+    },
+    scales: {
+      x: { ticks:{ color:'#888', maxRotation:45 }, grid:{ color:GRID+'33' } },
+      yLeft: {
+        type:'linear', position:'left',
+        ticks:{ color:GOLD, callback: v => '$'+fmtN(v) },
+        grid: { color:GRID+'55' }
+      },
+      yRight: {
+        type:'linear', position:'right',
+        ticks:{ color:WHITE, callback: v => '$'+v.toFixed(2) },
+        grid:{ drawOnChartArea:false }
+      }
+    }
+  };
+
+  chartAllTime = new Chart($('chartAllTime'), {
+    type: 'line',
+    data: {
+      labels: monthly.map(r => {
+        const d = new Date(r.date+'T00:00:00');
+        return d.toLocaleDateString('en-US',{month:'short', year:'2-digit'});
+      }),
+      datasets: [
+        {
+          label: 'Portfolio Value',
+          data: monthly.map(r => r.total),
+          yAxisID: 'yLeft',
+          borderColor: GOLD,
+          backgroundColor: GOLD+'18',
+          fill: true,
+          tension: 0.4,
+          pointRadius: 2,
+          pointHoverRadius: 5,
+          borderWidth: 2
+        },
+        {
+          label: 'Share Price',
+          data: monthly.map(r => r.share_price),
+          yAxisID: 'yRight',
+          borderColor: WHITE,
+          backgroundColor: 'transparent',
+          tension: 0.4,
+          pointRadius: 2,
+          pointHoverRadius: 5,
+          borderWidth: 1.5
+        }
+      ]
+    },
+    options: optsAT
+  });
+
+  // ── Donut ────────────────────────────────────────────────────────────
+  chartDonut = new Chart($('chartDonut'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Diego Mejia', 'John Vargas'],
+      datasets: [{
+        data: [data.members.diego.pct, data.members.john.pct],
+        backgroundColor: ['#2D4A7A', '#3a2d7a'],
+        borderColor: [GOLD, CYAN],
+        borderWidth: 2,
+        hoverOffset: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      cutout: '68%',
+      plugins: {
+        legend: { display:false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ` ${ctx.label}: ${ctx.parsed.toFixed(2)}%`
+          }
+        }
+      }
+    }
+  });
+}
+
+// ── Populate Stats ────────────────────────────────────────────────────────────
+function populateStats(data) {
+  const p = data.portfolio;
+  const m = data.members;
+
+  // Header
+  const d = new Date(data.updated + 'T00:00:00');
+  $('hdr-updated').textContent = d.toLocaleDateString('en-US',
+    { weekday:'short', year:'numeric', month:'short', day:'numeric' });
+
+  // Portfolio
+  $('s-portfolio').textContent = fmt(p.total_value, 0);
+  const pc = p.change_1d_pct;
+  $('s-portfolio-chg').textContent = `${arrow(pc)} ${Math.abs(pc).toFixed(2)}% today`;
+  $('s-portfolio-chg').className = 'change ' + cls(pc);
+
+  // Share price
+  $('s-price').textContent = '$' + p.share_price.toFixed(4);
+  $('s-price-chg').textContent = `${arrow(p.change_1d)} ${arrow(p.change_1d)} $${Math.abs(p.change_1d).toFixed(4)} today`;
+  $('s-price-chg').className = 'change ' + cls(p.change_1d);
+
+  // 50MA
+  $('s-ma50').textContent = '$' + p.ma50.toFixed(4);
+  const diff = p.share_price - p.ma50;
+  const above = diff >= 0;
+  $('s-ma50-vs').textContent = `${above ? '▲ Above' : '▼ Below'} MA by $${Math.abs(diff).toFixed(4)}`;
+  $('s-ma50-vs').className = 'change ' + (above ? 'up' : 'down');
+
+  // Shares
+  $('s-shares').textContent = fmtN(m.total_shares, 2);
+
+  // Members
+  $('diego-shares').textContent = fmtN(m.diego.shares, 2) + ' shares';
+  $('diego-pct').textContent    = m.diego.pct.toFixed(2) + '%';
+  $('diego-val').textContent    = fmt(m.diego.value, 0);
+  $('diego-bar').style.width    = m.diego.pct + '%';
+
+  $('john-shares').textContent  = fmtN(m.john.shares, 2) + ' shares';
+  $('john-pct').textContent     = m.john.pct.toFixed(2) + '%';
+  $('john-val').textContent     = fmt(m.john.value, 0);
+  $('john-bar').style.width     = m.john.pct + '%';
+
+  $('donut-total').textContent  = fmt(p.total_value, 0);
+}
+
+// ── Load & Refresh ────────────────────────────────────────────────────────────
+async function loadData() {
+  // Cache-bust so browsers always get the latest data.json
+  const res = await fetch('data.json?t=' + Date.now());
+  return res.json();
+}
+
+async function init() {
+  const data = await loadData();
+  populateStats(data);
+  buildCharts(data);
+
+  // Auto-refresh every 5 minutes
+  setTimeout(() => location.reload(), 5 * 60 * 1000);
+}
+
+init().catch(err => {
+  console.error('Dashboard load error:', err);
+  document.body.insertAdjacentHTML('afterbegin',
+    `<div style="background:#E05C5C;color:#fff;padding:12px 24px;font-size:0.85rem;">
+      ⚠ Could not load dashboard data. Please refresh the page.
+    </div>`);
+});
+</script>
+</body>
+</html>
