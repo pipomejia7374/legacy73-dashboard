@@ -17,6 +17,7 @@
       --green:       #00cc55;
       --red:         #ff3333;
       --blue:        #3399ff;
+      --purple:      #cc44ff;
       --text:        #ddaa55;
       --text-dim:    #886633;
       --text-faint:  #554422;
@@ -25,7 +26,7 @@
       --border2:     #3a3a20;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { background: var(--bg); color: var(--text); font-family: 'Courier New', Courier, monospace; font-size: 13px; height: 100%; }
+    html, body { background: var(--bg); color: var(--text); font-family: 'Courier New', Courier, monospace; font-size: 14px; height: 100%; }
 
     /* ── HEADER ─────────────────────────────────────────────────── */
     #header {
@@ -33,20 +34,20 @@
       padding: 8px 16px; background: var(--bg2); border-bottom: 2px solid var(--amber-dim);
     }
     #header .brand { font-size: 18px; font-weight: bold; color: var(--amber); letter-spacing: 3px; }
-    #header .brand span { font-size: 11px; color: var(--text-dim); display: block; letter-spacing: 1px; }
-    #header .hdr-right { text-align: right; font-size: 11px; color: var(--text-dim); line-height: 1.6; }
-    #header .hdr-price { font-size: 22px; color: var(--amber); font-weight: bold; }
-    #header .hdr-chg { font-size: 13px; margin-left: 8px; }
+    #header .brand span { font-size: 12px; color: var(--text-dim); display: block; letter-spacing: 1px; }
+    #header .hdr-right { text-align: right; font-size: 12px; color: var(--text-dim); line-height: 1.6; }
+    #header .hdr-price { font-size: 24px; color: var(--amber); font-weight: bold; }
+    #header .hdr-chg { font-size: 14px; margin-left: 8px; }
     .up { color: var(--green); } .dn { color: var(--red); } .neu { color: var(--text-dim); }
 
     /* ── TICKER ──────────────────────────────────────────────────── */
     #ticker-wrap {
       background: #0d0d00; border-bottom: 1px solid var(--border2);
-      overflow: hidden; white-space: nowrap; padding: 4px 0;
+      overflow: hidden; white-space: nowrap; padding: 5px 0;
     }
     #ticker-track { display: inline-block; animation: scroll-left 60s linear infinite; }
     #ticker-track:hover { animation-play-state: paused; }
-    .tick-item { display: inline-block; padding: 0 20px; font-size: 12px; }
+    .tick-item { display: inline-block; padding: 0 20px; font-size: 13px; }
     .tick-item .t-label { color: var(--amber-dim); }
     .tick-item .t-val { color: var(--white); margin: 0 2px; }
     .tick-sep { color: var(--text-faint); margin: 0 4px; }
@@ -55,7 +56,7 @@
     /* ── TABS ────────────────────────────────────────────────────── */
     #tabs { display: flex; background: var(--bg2); border-bottom: 1px solid var(--border2); padding: 0 16px; }
     .tab-btn {
-      padding: 8px 20px; font-family: inherit; font-size: 12px; font-weight: bold;
+      padding: 9px 20px; font-family: inherit; font-size: 13px; font-weight: bold;
       letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
       background: none; border: none; border-bottom: 3px solid transparent;
       color: var(--text-dim); transition: color .2s, border-color .2s;
@@ -81,20 +82,21 @@
 
     .stat-card {
       background: var(--bg3); border: 1px solid var(--border); border-left: 3px solid var(--amber-dim);
-      padding: 10px 12px; border-radius: 2px;
+      padding: 12px 14px; border-radius: 2px;
     }
-    .stat-card .sc-label { font-size: 10px; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
-    .stat-card .sc-val { font-size: 20px; font-weight: bold; color: var(--amber); line-height: 1.1; }
-    .stat-card .sc-sub { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+    .stat-card .sc-label { font-size: 12px; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
+    .stat-card .sc-val { font-size: 22px; font-weight: bold; color: var(--amber); line-height: 1.1; }
+    .stat-card .sc-sub { font-size: 13px; color: var(--text-dim); margin-top: 3px; }
     .stat-card.green-l { border-left-color: var(--green); }
     .stat-card.red-l   { border-left-color: var(--red); }
     .stat-card.blue-l  { border-left-color: var(--blue); }
+    .stat-card.purple-l { border-left-color: var(--purple); }
 
     /* ── SECTION TITLE ───────────────────────────────────────────── */
     .sec-title {
-      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
       color: var(--amber-dim); border-bottom: 1px solid var(--border2);
-      padding-bottom: 4px; margin: 18px 0 10px 0;
+      padding-bottom: 5px; margin: 18px 0 12px 0;
     }
     .sec-title:first-child { margin-top: 0; }
 
@@ -106,15 +108,15 @@
     .chart-wrap canvas { max-height: 260px; }
 
     /* ── MEMBERS TABLE ───────────────────────────────────────────── */
-    .mem-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .mem-table { width: 100%; border-collapse: collapse; font-size: 14px; }
     .mem-table th {
-      text-align: right; padding: 6px 10px; font-size: 10px; letter-spacing: 1px;
+      text-align: right; padding: 7px 10px; font-size: 12px; letter-spacing: 1px;
       text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--border2);
       background: var(--bg2); white-space: nowrap;
     }
     .mem-table th:first-child { text-align: left; }
     .mem-table td {
-      text-align: right; padding: 7px 10px; border-bottom: 1px solid var(--border);
+      text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--border);
       white-space: nowrap; color: var(--white);
     }
     .mem-table td:first-child { text-align: left; color: var(--amber); font-weight: bold; }
@@ -127,36 +129,75 @@
 
     /* ── PERF CARDS ──────────────────────────────────────────────── */
     .perf-card {
-      background: var(--bg3); border: 1px solid var(--border); padding: 12px 14px; border-radius: 2px; text-align: center;
+      background: var(--bg3); border: 1px solid var(--border); padding: 14px 14px; border-radius: 2px; text-align: center;
     }
-    .perf-card .pc-period { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin-bottom: 6px; }
-    .perf-card .pc-pct    { font-size: 24px; font-weight: bold; line-height: 1; }
-    .perf-card .pc-usd    { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+    .perf-card .pc-period { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin-bottom: 6px; }
+    .perf-card .pc-pct    { font-size: 26px; font-weight: bold; line-height: 1; }
+    .perf-card .pc-usd    { font-size: 14px; color: var(--text-dim); margin-top: 5px; }
 
     /* ── RISK METERS ─────────────────────────────────────────────── */
     .risk-meter {
-      background: var(--bg3); border: 1px solid var(--border); padding: 12px 14px; border-radius: 2px;
+      background: var(--bg3); border: 1px solid var(--border); padding: 14px 16px; border-radius: 2px;
     }
-    .risk-meter .rm-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin-bottom: 6px; }
-    .risk-meter .rm-val   { font-size: 20px; font-weight: bold; }
-    .rm-bar-bg { background: var(--bg4); height: 5px; border-radius: 2px; margin-top: 8px; overflow: hidden; }
+    .risk-meter .rm-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin-bottom: 6px; }
+    .risk-meter .rm-val   { font-size: 22px; font-weight: bold; }
+    .rm-bar-bg { background: var(--bg4); height: 6px; border-radius: 2px; margin-top: 8px; overflow: hidden; }
     .rm-bar    { height: 100%; border-radius: 2px; transition: width .5s; }
 
     /* ── MA INDICATOR ────────────────────────────────────────────── */
-    .ma-row { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg3); border: 1px solid var(--border); border-radius: 2px; }
-    .ma-row .ma-name  { font-size: 11px; color: var(--text-dim); width: 60px; }
-    .ma-row .ma-price { font-size: 18px; font-weight: bold; color: var(--amber); min-width: 90px; }
-    .ma-row .ma-vs    { font-size: 12px; margin-left: auto; min-width: 90px; text-align: right; }
+    .ma-row { display: flex; align-items: center; gap: 12px; padding: 11px 14px; background: var(--bg3); border: 1px solid var(--border); border-radius: 2px; }
+    .ma-row .ma-name  { font-size: 13px; color: var(--text-dim); width: 65px; }
+    .ma-row .ma-price { font-size: 20px; font-weight: bold; color: var(--amber); min-width: 90px; }
+    .ma-row .ma-vs    { font-size: 13px; margin-left: auto; min-width: 100px; text-align: right; }
     .ma-row .ma-bar-wrap { flex: 1; }
     .ma-bar-track { height: 4px; background: var(--bg4); border-radius: 2px; position: relative; }
     .ma-zero-line { position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--text-faint); }
+
+    /* ── PORTFOLIO TABLE ─────────────────────────────────────────── */
+    .port-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .port-table th {
+      text-align: right; padding: 7px 10px; font-size: 12px; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--border2);
+      background: var(--bg2); white-space: nowrap;
+    }
+    .port-table th:first-child, .port-table th:nth-child(2) { text-align: left; }
+    .port-table td {
+      text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--border);
+      white-space: nowrap; color: var(--white);
+    }
+    .port-table td:first-child { text-align: left; font-weight: bold; }
+    .port-table td:nth-child(2) { text-align: left; }
+    .port-table tr:hover td { background: var(--bg4); }
+    .port-table .section-row td {
+      background: var(--bg2); color: var(--amber-dim); font-size: 11px;
+      letter-spacing: 2px; text-transform: uppercase; padding: 5px 10px;
+    }
+
+    /* ── ALLOC BARS ──────────────────────────────────────────────── */
+    .alloc-row { margin-bottom: 10px; }
+    .alloc-row .alloc-info { display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 13px; }
+    .alloc-row .alloc-bar-bg { height: 7px; background: var(--bg4); border-radius: 3px; overflow: hidden; }
+    .alloc-row .alloc-bar { height: 100%; border-radius: 3px; transition: width .5s; }
+
+    /* ── GAIN BAR ────────────────────────────────────────────────── */
+    .gain-bar-wrap { display: inline-block; width: 60px; height: 5px; background: var(--bg4); border-radius: 2px; vertical-align: middle; overflow: hidden; }
+    .gain-bar { height: 100%; border-radius: 2px; }
 
     /* ── LOADING ─────────────────────────────────────────────────── */
     #loading { padding: 40px; text-align: center; color: var(--text-dim); font-size: 14px; letter-spacing: 2px; animation: blink 1s step-end infinite; }
     @keyframes blink { 50% { opacity: 0; } }
 
     /* ── UPDATED BADGE ───────────────────────────────────────────── */
-    .updated-badge { font-size: 10px; color: var(--text-faint); margin-top: 4px; }
+    .updated-badge { font-size: 11px; color: var(--text-faint); margin-top: 4px; }
+
+    /* ── TYPE BADGE ──────────────────────────────────────────────── */
+    .type-badge {
+      display: inline-block; padding: 1px 6px; border-radius: 2px; font-size: 11px;
+      letter-spacing: 1px; font-weight: bold;
+    }
+    .type-etf    { background: rgba(255,170,0,0.15); color: var(--amber); border: 1px solid var(--amber-faint); }
+    .type-equity { background: rgba(51,153,255,0.12); color: var(--blue); border: 1px solid rgba(51,153,255,0.2); }
+    .type-option { background: rgba(204,68,255,0.12); color: var(--purple); border: 1px solid rgba(204,68,255,0.2); }
   </style>
 </head>
 <body>
@@ -165,7 +206,7 @@
 <div id="header">
   <div class="brand">
     LEGACY 73 LLC
-    <span>PORTFOLIO TERMINAL v2.0</span>
+    <span>PORTFOLIO TERMINAL v2.1</span>
   </div>
   <div id="hdr-center" style="display:flex;align-items:center;gap:12px;">
     <span class="hdr-price" id="hdr-sp">—</span>
@@ -173,7 +214,7 @@
   </div>
   <div class="hdr-right">
     <span id="hdr-total">—</span><br>
-    <span id="hdr-time" style="font-size:10px;">—</span><br>
+    <span id="hdr-time" style="font-size:11px;">—</span><br>
     <span class="updated-badge" id="hdr-updated">—</span>
   </div>
 </div>
@@ -189,6 +230,7 @@
   <button class="tab-btn" onclick="showTab('members',this)">Members</button>
   <button class="tab-btn" onclick="showTab('performance',this)">Performance</button>
   <button class="tab-btn" onclick="showTab('risk',this)">Risk</button>
+  <button class="tab-btn" onclick="showTab('portfolio',this)">PortFolio</button>
 </div>
 
 <!-- ── OVERVIEW TAB ───────────────────────────────────────────────────────── -->
@@ -255,7 +297,7 @@
   <div id="dd-meter" class="risk-meter" style="margin-bottom:10px;">
     <div class="rm-label">Drawdown from All-Time High</div>
     <div class="rm-val dn" id="dd-pct">—</div>
-    <div id="dd-days" style="font-size:11px;color:var(--text-dim);margin-top:2px;"></div>
+    <div id="dd-days" style="font-size:13px;color:var(--text-dim);margin-top:2px;"></div>
     <div class="rm-bar-bg" style="margin-top:10px;"><div class="rm-bar" id="dd-bar" style="background:var(--red);width:0%;"></div></div>
   </div>
 
@@ -266,11 +308,46 @@
   <div class="stat-grid sg-3" id="ma-stats"></div>
 </div>
 
+<!-- ── PORTFOLIO TAB ──────────────────────────────────────────────────────── -->
+<div id="tab-portfolio" class="tab-panel">
+  <div class="sec-title">Portfolio Summary</div>
+  <div class="stat-grid sg-4" id="port-summary"></div>
+
+  <div class="sec-title">Asset Allocation</div>
+  <div id="port-alloc-wrap" style="display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:start;">
+    <div class="chart-wrap" style="padding:16px;">
+      <canvas id="chartAlloc" style="max-height:240px;"></canvas>
+    </div>
+    <div id="alloc-bars" style="padding-top:4px;"></div>
+  </div>
+
+  <div class="sec-title">Holdings — Positions</div>
+  <div style="overflow-x:auto;">
+    <table class="port-table">
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Description</th>
+          <th>Type</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Market Value</th>
+          <th>% Portfolio</th>
+          <th>Cost Basis</th>
+          <th>Gain / Loss</th>
+          <th>Day Change</th>
+        </tr>
+      </thead>
+      <tbody id="port-tbody"></tbody>
+    </table>
+  </div>
+  <div id="port-updated" style="font-size:12px;color:var(--text-dim);margin-top:10px;text-align:right;"></div>
+</div>
+
 <script>
 // ── UTILITIES ──────────────────────────────────────────────────────────────
 const $ = id => document.getElementById(id);
-const fmt$ = v => '$' + v.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
-const fmt$4 = v => '$' + v.toLocaleString('en-US', {minimumFractionDigits:4, maximumFractionDigits:4});
+const fmt$ = v => '$' + (v < 0 ? '-' : '') + Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
 const fmtPct = (v, dec=2) => (v >= 0 ? '+' : '') + v.toFixed(dec) + '%';
 const upDn = v => v > 0 ? 'up' : v < 0 ? 'dn' : 'neu';
 const clr = v => v > 0 ? '#00cc55' : v < 0 ? '#ff3333' : '#886633';
@@ -288,7 +365,7 @@ function perfCard(period, pct, usd) {
   return `<div class="perf-card">
     <div class="pc-period">${period}</div>
     <div class="pc-pct" style="color:${c};">${fmtPct(pct)}</div>
-    <div class="pc-usd" style="color:${c};">${usd >= 0 ? '+' : ''}${fmt$4(usd)}</div>
+    <div class="pc-usd" style="color:${c};">${usd >= 0 ? '+' : ''}${fmt$(usd)}</div>
   </div>`;
 }
 
@@ -305,11 +382,11 @@ function showTab(name, btn) {
 function buildTicker(d) {
   const p = d.portfolio;
   const items = [
-    { label: 'L73',   val: fmt$4(p.share_price), chg: fmtPct(p.change_1d_pct), c: clr(p.change_1d_pct) },
+    { label: 'L73',   val: fmt$(p.share_price),  chg: fmtPct(p.change_1d_pct), c: clr(p.change_1d_pct) },
     { label: 'NAV',   val: fmt$(p.total_value),   chg: '',                       c: '#ddaa55' },
-    { label: 'MA-50', val: p.ma50 ? fmt$4(p.ma50) : 'N/A', chg: '',             c: '#3399ff' },
-    { label: 'MA-30', val: fmt$4(p.ma30), chg: fmtPct(p.price_vs_ma30),         c: clr(p.price_vs_ma30) },
-    { label: 'MA-90', val: fmt$4(p.ma90), chg: fmtPct(p.price_vs_ma90),         c: clr(p.price_vs_ma90) },
+    { label: 'MA-50', val: p.ma50 ? fmt$(p.ma50) : 'N/A', chg: '',              c: '#3399ff' },
+    { label: 'MA-30', val: fmt$(p.ma30), chg: fmtPct(p.price_vs_ma30),          c: clr(p.price_vs_ma30) },
+    { label: 'MA-90', val: fmt$(p.ma90), chg: fmtPct(p.price_vs_ma90),          c: clr(p.price_vs_ma90) },
   ];
   Object.values(d.members).forEach(m => {
     items.push({
@@ -329,7 +406,7 @@ function buildTicker(d) {
 // ── CHART.JS DEFAULTS ──────────────────────────────────────────────────────
 Chart.defaults.color = '#886633';
 Chart.defaults.font.family = "'Courier New', monospace";
-Chart.defaults.font.size = 11;
+Chart.defaults.font.size = 12;
 
 function makeChart(id, labels, datasets) {
   if (charts[id]) charts[id].destroy();
@@ -345,7 +422,7 @@ function makeChart(id, labels, datasets) {
         tooltip: {
           backgroundColor: '#111111', borderColor: '#333300', borderWidth: 1,
           titleColor: '#ffaa00', bodyColor: '#ddaa55',
-          callbacks: { label: ctx => ' ' + ctx.dataset.label + ': $' + ctx.parsed.y.toFixed(4) }
+          callbacks: { label: ctx => ' ' + ctx.dataset.label + ': $' + ctx.parsed.y.toFixed(2) }
         }
       },
       scales: {
@@ -357,14 +434,174 @@ function makeChart(id, labels, datasets) {
   });
 }
 
+// ── POPULATE PORTFOLIO TAB ─────────────────────────────────────────────────
+function populatePortfolio(d) {
+  if (!d.holdings || !d.holdings.positions || d.holdings.positions.length === 0) {
+    $('port-tbody').innerHTML = '<tr><td colspan="10" style="text-align:center;color:var(--text-dim);padding:24px;">No holdings data available. Run update_dashboard.py to load positions.</td></tr>';
+    $('port-summary').innerHTML = statCard('Holdings', 'N/A', 'No CSV data found');
+    return;
+  }
+
+  const h = d.holdings;
+  const positions = h.positions;
+
+  // ── Summary cards ──────────────────────────────────────────────
+  const gainC = (h.total_gain_pct || 0) >= 0 ? 'green-l' : 'red-l';
+  $('port-summary').innerHTML = [
+    statCard('Market Value',   fmt$(h.total_value || 0), 'Schwab account total'),
+    statCard('Total Invested', fmt$(h.total_cost  || 0), 'Cost basis'),
+    statCard('Total Gain / Loss',
+      `<span class="${upDn(h.total_gain_pct || 0)}">${fmtPct(h.total_gain_pct || 0)}</span>`,
+      `${(h.total_gain_usd || 0) >= 0 ? '+' : ''}${fmt$(h.total_gain_usd || 0)}`, gainC),
+    statCard('Positions', positions.length + ' holdings', 'As of ' + (h.as_of || '—')),
+  ].join('');
+
+  // ── Allocation chart ──────────────────────────────────────────
+  const TYPE_COLORS = {
+    'ETF':    '#ffaa00',
+    'Equity': '#3399ff',
+    'Option': '#cc44ff',
+    'Other':  '#886633',
+  };
+
+  // Group by asset type for donut
+  const byType = {};
+  positions.forEach(p => {
+    if (!p.market_value || p.market_value <= 0) return;
+    const t = p.asset_type || 'Other';
+    byType[t] = (byType[t] || 0) + p.market_value;
+  });
+
+  if (charts['chartAlloc']) charts['chartAlloc'].destroy();
+  const ctx = $('chartAlloc').getContext('2d');
+  const typeLabels = Object.keys(byType);
+  const typeVals   = Object.values(byType);
+  const typeTotal  = typeVals.reduce((a, b) => a + b, 0);
+
+  charts['chartAlloc'] = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: typeLabels,
+      datasets: [{
+        data: typeVals.map(v => Math.round(v * 100) / 100),
+        backgroundColor: typeLabels.map(t => TYPE_COLORS[t] || '#886633'),
+        borderColor: '#0b0b0b',
+        borderWidth: 3,
+        hoverBorderWidth: 2,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true, cutout: '60%',
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { color: '#ddaa55', padding: 14, font: { size: 13 } }
+        },
+        tooltip: {
+          backgroundColor: '#111', borderColor: '#333300', borderWidth: 1,
+          titleColor: '#ffaa00', bodyColor: '#ddaa55',
+          callbacks: {
+            label: ctx => ` ${ctx.label}: ${fmt$(ctx.parsed)} (${(ctx.parsed/typeTotal*100).toFixed(1)}%)`
+          }
+        }
+      }
+    }
+  });
+
+  // ── Allocation bars (right side) ──────────────────────────────
+  const sortedByVal = [...positions]
+    .filter(p => p.market_value && Math.abs(p.market_value) > 0)
+    .sort((a, b) => Math.abs(b.market_value) - Math.abs(a.market_value));
+
+  const maxVal = sortedByVal[0] ? Math.abs(sortedByVal[0].market_value) : 1;
+
+  $('alloc-bars').innerHTML = sortedByVal.map(p => {
+    const pct     = typeTotal > 0 ? p.market_value / typeTotal * 100 : 0;
+    const barPct  = Math.abs(p.market_value) / maxVal * 100;
+    const barClr  = TYPE_COLORS[p.asset_type] || '#886633';
+    const gainC   = p.gain_pct !== null ? clr(p.gain_pct) : 'var(--text-dim)';
+    const gainStr = p.gain_pct !== null ? fmtPct(p.gain_pct) : 'N/A';
+    return `<div class="alloc-row">
+      <div class="alloc-info">
+        <span style="color:${barClr};font-weight:bold;">${p.symbol}</span>
+        <span style="color:var(--white);">${fmt$(p.market_value)}</span>
+        <span style="color:var(--text-dim);">${pct.toFixed(1)}%</span>
+        <span style="color:${gainC};">${gainStr}</span>
+      </div>
+      <div class="alloc-bar-bg">
+        <div class="alloc-bar" style="width:${barPct.toFixed(1)}%;background:${barClr};"></div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // ── Holdings table ────────────────────────────────────────────
+  // Group by type: ETFs first, then Equities, then Options
+  const order = ['ETF', 'Equity', 'Option'];
+  const grouped = {};
+  order.forEach(t => { grouped[t] = []; });
+  positions.forEach(p => {
+    const t = order.includes(p.asset_type) ? p.asset_type : 'Option';
+    grouped[t].push(p);
+  });
+
+  let rows = '';
+  order.forEach(type => {
+    const group = grouped[type];
+    if (!group || group.length === 0) return;
+    const typeClr = TYPE_COLORS[type] || '#886633';
+
+    // Section header
+    rows += `<tr class="section-row"><td colspan="10" style="color:${typeClr};">${type}s</td></tr>`;
+
+    // Sort group by abs market value
+    group.sort((a, b) => Math.abs(b.market_value || 0) - Math.abs(a.market_value || 0));
+
+    group.forEach(p => {
+      const gainC    = p.gain_pct !== null ? clr(p.gain_pct)    : 'var(--text-dim)';
+      const dayC     = p.day_chg_pct !== null ? clr(p.day_chg_pct) : 'var(--text-dim)';
+      const gainPct  = p.gain_pct !== null ? fmtPct(p.gain_pct) : 'N/A';
+      const gainUsd  = p.gain_usd !== null ? `${p.gain_usd >= 0 ? '+' : ''}${fmt$(p.gain_usd)}` : 'N/A';
+      const dayPct   = p.day_chg_pct !== null ? fmtPct(p.day_chg_pct) : 'N/A';
+      const dayUsd   = p.day_chg_usd !== null ? `${p.day_chg_usd >= 0 ? '+' : ''}${fmt$(p.day_chg_usd)}` : 'N/A';
+      const typeBadge = `<span class="type-badge type-${type.toLowerCase()}">${type}</span>`;
+
+      // Visual gain bar (-100% to +100% scale, ±50% shown)
+      const barPct  = Math.min(Math.abs(p.gain_pct || 0), 50) / 50 * 100;
+
+      rows += `<tr>
+        <td style="color:${typeClr};">${p.symbol}</td>
+        <td style="font-size:12px;color:var(--text-dim);max-width:200px;overflow:hidden;text-overflow:ellipsis;">${p.description}</td>
+        <td style="text-align:left;">${typeBadge}</td>
+        <td>${p.qty !== null ? Math.abs(p.qty).toLocaleString('en-US') : '—'}</td>
+        <td>${p.price !== null ? fmt$(p.price) : '—'}</td>
+        <td style="color:var(--white);">${fmt$(p.market_value)}</td>
+        <td>${p.pct_of_portfolio !== null ? p.pct_of_portfolio + '%' : '—'}</td>
+        <td>${p.cost_basis !== null ? fmt$(p.cost_basis) : '—'}</td>
+        <td>
+          <span style="color:${gainC};font-weight:bold;">${gainPct}</span><br>
+          <span style="color:${gainC};font-size:12px;">${gainUsd}</span><br>
+          <div class="gain-bar-wrap"><div class="gain-bar" style="width:${barPct.toFixed(0)}%;background:${gainC};"></div></div>
+        </td>
+        <td>
+          <span style="color:${dayC};font-weight:bold;">${dayPct}</span><br>
+          <span style="color:${dayC};font-size:12px;">${dayUsd}</span>
+        </td>
+      </tr>`;
+    });
+  });
+
+  $('port-tbody').innerHTML = rows;
+  $('port-updated').textContent = '▸ Source: ' + (h.source || 'N/A') + '  |  As of: ' + (h.as_of || 'N/A');
+}
+
 // ── POPULATE DATA ──────────────────────────────────────────────────────────
 function populate(d) {
   const p = d.portfolio;
   const now = new Date();
 
   // HEADER
-  $('hdr-sp').textContent  = fmt$4(p.share_price);
-  $('hdr-chg').innerHTML   = `<span class="${upDn(p.change_1d_pct)}">${fmtPct(p.change_1d_pct)}&nbsp;(${p.change_1d >= 0 ? '+' : ''}${fmt$4(p.change_1d)})</span>`;
+  $('hdr-sp').textContent  = fmt$(p.share_price);
+  $('hdr-chg').innerHTML   = `<span class="${upDn(p.change_1d_pct)}">${fmtPct(p.change_1d_pct)}&nbsp;(${p.change_1d >= 0 ? '+' : ''}${fmt$(p.change_1d)})</span>`;
   $('hdr-total').textContent = 'NAV ' + fmt$(p.total_value);
   $('hdr-time').textContent  = now.toLocaleString('en-US', {weekday:'short',year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
   $('hdr-updated').textContent = 'DATA: ' + d.updated;
@@ -375,20 +612,20 @@ function populate(d) {
 
   // ── OVERVIEW CARDS ───────────────────────────────────────────────────────
   $('ov-cards').innerHTML = [
-    statCard('Share Price', fmt$4(p.share_price),
+    statCard('Share Price', fmt$(p.share_price),
       `<span class="${upDn(p.change_1d_pct)}">${fmtPct(p.change_1d_pct)}&nbsp;today</span>`),
     statCard('Portfolio NAV', fmt$(p.total_value),
       `<span class="${upDn(p.change_1d)}">${p.change_1d >= 0 ? '+' : ''}${fmt$(p.change_1d)}&nbsp;today</span>`),
     statCard('CAGR', fmtPct(p.cagr), 'Annualized since Jan 1 2024', p.cagr >= 0 ? 'green-l' : 'red-l'),
     statCard('Since Inception', fmtPct(p.change_inc_pct),
-      `${p.change_inc >= 0 ? '+' : ''}${fmt$4(p.change_inc)} / share`, p.change_inc >= 0 ? 'green-l' : 'red-l'),
+      `${p.change_inc >= 0 ? '+' : ''}${fmt$(p.change_inc)} / share`, p.change_inc >= 0 ? 'green-l' : 'red-l'),
   ].join('');
 
   $('ov-perf').innerHTML = [
-    statCard('1-Day',   `<span class="${upDn(p.change_1d_pct)}">${fmtPct(p.change_1d_pct)}</span>`,   fmt$4(p.change_1d)),
-    statCard('1-Week',  `<span class="${upDn(p.change_1w_pct)}">${fmtPct(p.change_1w_pct)}</span>`,   fmt$4(p.change_1w)),
-    statCard('1-Month', `<span class="${upDn(p.change_1m_pct)}">${fmtPct(p.change_1m_pct)}</span>`, fmt$4(p.change_1m)),
-    statCard('YTD',     `<span class="${upDn(p.change_ytd_pct)}">${fmtPct(p.change_ytd_pct)}</span>`, fmt$4(p.change_ytd)),
+    statCard('1-Day',   `<span class="${upDn(p.change_1d_pct)}">${fmtPct(p.change_1d_pct)}</span>`,   fmt$(p.change_1d)),
+    statCard('1-Week',  `<span class="${upDn(p.change_1w_pct)}">${fmtPct(p.change_1w_pct)}</span>`,   fmt$(p.change_1w)),
+    statCard('1-Month', `<span class="${upDn(p.change_1m_pct)}">${fmtPct(p.change_1m_pct)}</span>`, fmt$(p.change_1m)),
+    statCard('YTD',     `<span class="${upDn(p.change_ytd_pct)}">${fmtPct(p.change_ytd_pct)}</span>`, fmt$(p.change_ytd)),
   ].join('');
 
   // 3M CHART
@@ -410,7 +647,7 @@ function populate(d) {
       <td>${m.name}</td>
       <td>${m.shares_a.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
       <td>${m.shares_b.toLocaleString('en-US',{minimumFractionDigits:4,maximumFractionDigits:4})}</td>
-      <td>${m.total_shares.toLocaleString('en-US',{minimumFractionDigits:4,maximumFractionDigits:4})}</td>
+      <td>${m.total_shares.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
       <td>${m.pct.toFixed(2)}%<span class="pct-bar" style="width:${barW}px;"></span></td>
       <td>${fmt$(m.value)}</td>
       <td class="${upDn(m.change_1d)}">${m.change_1d >= 0 ? '+' : ''}${fmt$(m.change_1d)}</td>
@@ -420,7 +657,7 @@ function populate(d) {
     <td>TOTAL</td>
     <td>${sumA.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
     <td>${sumB.toLocaleString('en-US',{minimumFractionDigits:4,maximumFractionDigits:4})}</td>
-    <td>${sumTot.toLocaleString('en-US',{minimumFractionDigits:4,maximumFractionDigits:4})}</td>
+    <td>${sumTot.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
     <td>100.00%</td>
     <td>${fmt$(sumVal)}</td>
     <td class="${upDn(sumChg)}">${sumChg >= 0 ? '+' : ''}${fmt$(sumChg)}</td>
@@ -430,7 +667,7 @@ function populate(d) {
   $('mem-totals').innerHTML = [
     statCard('Total Class A Shares', d.shares.total_a.toLocaleString('en-US',{minimumFractionDigits:2}), '7 members'),
     statCard('Total Class B Shares', d.shares.total_b.toLocaleString('en-US',{minimumFractionDigits:4}), '7 members'),
-    statCard('Total Shares Outstanding', d.shares.total.toLocaleString('en-US',{minimumFractionDigits:4}), 'Class A + Class B'),
+    statCard('Total Shares Outstanding', d.shares.total.toLocaleString('en-US',{minimumFractionDigits:2}), 'Class A + Class B'),
   ].join('');
 
   // ── PERFORMANCE ──────────────────────────────────────────────────────────
@@ -444,8 +681,8 @@ function populate(d) {
 
   $('perf-stats').innerHTML = [
     statCard('CAGR (Annualized)', fmtPct(p.cagr), 'Since Jan 1 2024', p.cagr >= 0 ? 'green-l' : 'red-l'),
-    statCard('All-Time High', fmt$4(p.max_price), 'on ' + p.max_date, 'green-l'),
-    statCard('All-Time Low',  fmt$4(p.min_price), 'on ' + p.min_date, 'red-l'),
+    statCard('All-Time High', fmt$(p.max_price), 'on ' + p.max_date, 'green-l'),
+    statCard('All-Time Low',  fmt$(p.min_price), 'on ' + p.min_date, 'red-l'),
   ].join('');
 
   // ALL-TIME CHART
@@ -459,9 +696,9 @@ function populate(d) {
 
   // ── RISK ─────────────────────────────────────────────────────────────────
   $('risk-extremes').innerHTML = [
-    statCard('All-Time High', fmt$4(p.max_price), p.max_date, 'green-l'),
-    statCard('All-Time Low',  fmt$4(p.min_price), p.min_date, 'red-l'),
-    statCard('Current Drawdown', `<span class="dn">${fmtPct(p.drawdown_pct)}</span>`, fmt$4(p.drawdown_usd) + ' / share', 'red-l'),
+    statCard('All-Time High', fmt$(p.max_price), p.max_date, 'green-l'),
+    statCard('All-Time Low',  fmt$(p.min_price), p.min_date, 'red-l'),
+    statCard('Current Drawdown', `<span class="dn">${fmtPct(p.drawdown_pct)}</span>`, fmt$(p.drawdown_usd) + ' / share', 'red-l'),
     statCard('Days Since ATH', p.days_since_max + ' days', 'since ' + p.max_date),
   ].join('');
 
@@ -483,7 +720,7 @@ function populate(d) {
     const barLeft = ma.vs >= 0 ? 50 : 50 - barPct;
     return `<div class="ma-row">
       <span class="ma-name">${ma.name}</span>
-      <span class="ma-price">${fmt$4(ma.price)}</span>
+      <span class="ma-price">${fmt$(ma.price)}</span>
       <div class="ma-bar-wrap">
         <div class="ma-bar-track">
           <span class="ma-zero-line"></span>
@@ -497,14 +734,17 @@ function populate(d) {
   $('ma-stats').innerHTML = [
     statCard('Price vs MA-30',
       `<span class="${upDn(p.price_vs_ma30)}">${fmtPct(p.price_vs_ma30)}</span>`,
-      `Price: ${fmt$4(sp)} | MA: ${fmt$4(p.ma30)}`),
+      `Price: ${fmt$(sp)} | MA: ${fmt$(p.ma30)}`),
     statCard('Price vs MA-50',
       p.ma50 ? `<span class="${upDn(((sp/p.ma50)-1)*100)}">${fmtPct(((sp/p.ma50)-1)*100)}</span>` : 'N/A',
-      p.ma50 ? `Price: ${fmt$4(sp)} | MA: ${fmt$4(p.ma50)}` : ''),
+      p.ma50 ? `Price: ${fmt$(sp)} | MA: ${fmt$(p.ma50)}` : ''),
     statCard('Price vs MA-90',
       `<span class="${upDn(p.price_vs_ma90)}">${fmtPct(p.price_vs_ma90)}</span>`,
-      `Price: ${fmt$4(sp)} | MA: ${fmt$4(p.ma90)}`),
+      `Price: ${fmt$(sp)} | MA: ${fmt$(p.ma90)}`),
   ].join('');
+
+  // ── PORTFOLIO ────────────────────────────────────────────────────────────
+  populatePortfolio(d);
 }
 
 // ── LOAD DATA ──────────────────────────────────────────────────────────────
