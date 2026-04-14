@@ -1,0 +1,49 @@
+name: Update Dashboard
+
+on:
+  schedule:
+    - cron: '15 21 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Force update even if already run today'
+        required: false
+        default: 'false'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install yfinance
+
+      - name: Run dashboard updater
+        run: |
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            python update_dashboard.py --force
+          else
+            python update_dashboard.py
+          fi
+
+      - name: Commit and push updated files
+        run: |
+          git config user.name  "Dashboard Bot"
+          git config user.email "bot@noreply.github.com"
+          git add data.json history.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "auto: update dashboard $(date -u +%Y-%m-%d)"
+            git push
+          fi
