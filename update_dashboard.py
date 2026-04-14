@@ -18,35 +18,39 @@ import yfinance as yf
 # ── Portfolio Composition ────────────────────────────────────────────────────
 # Update this section whenever positions change.
 POSITIONS = [
-    {"symbol": "IBIT",                "display": "IBIT",                    "description": "ISHARES BITCOIN TRUST ETF",                                  "asset_type": "ETF",    "qty":  2340, "cost_basis": 128500.89, "multiplier": 1},
-    {"symbol": "ASTS",                "display": "ASTS",                    "description": "AST SPACEMOBILE INC CLASS CLASS A",                          "asset_type": "Equity", "qty":    50, "cost_basis":   3685.00, "multiplier": 1},
-    {"symbol": "AMD",                 "display": "AMD",                     "description": "ADVANCED MICRO DEVIC",                                        "asset_type": "Equity", "qty":    20, "cost_basis":   4964.20, "multiplier": 1},
-    {"symbol": "TSLA",                "display": "TSLA",                    "description": "TESLA INC",                                                   "asset_type": "Equity", "qty":    12, "cost_basis":   5120.80, "multiplier": 1},
-    {"symbol": "PLTR",                "display": "PLTR",                    "description": "PALANTIR TECHNOLOGIES INCLASS CLASS A",                       "asset_type": "Equity", "qty":    27, "cost_basis":   4903.79, "multiplier": 1},
-    {"symbol": "TSM",                 "display": "TSM",                     "description": "TAIWAN SEMICONDUCTOR M FSPONSORED ADR 1 ADR REPS 5 ORD SHS", "asset_type": "Equity", "qty":     8, "cost_basis":   2370.80, "multiplier": 1},
-    {"symbol": "HOOD",                "display": "HOOD",                    "description": "ROBINHOOD MKTS INC CLASS CLASS A",                            "asset_type": "Equity", "qty":    34, "cost_basis":   4407.92, "multiplier": 1},
-    {"symbol": "HIMS",                "display": "HIMS",                    "description": "HIMS & HERS HEALTH INC CLASS CLASS A",                        "asset_type": "Equity", "qty":   104, "cost_basis":   4092.35, "multiplier": 1},
-    {"symbol": "OKLO",                "display": "OKLO",                    "description": "OKLO INC CLASS A",                                            "asset_type": "Equity", "qty":    40, "cost_basis":   2863.40, "multiplier": 1},
-    {"symbol": "DUOL",                "display": "DUOL",                    "description": "DUOLINGO INC CLASS A",                                        "asset_type": "Equity", "qty":    20, "cost_basis":   3538.10, "multiplier": 1},
-    {"symbol": "MSTR",                "display": "MSTR",                    "description": "STRATEGY INC CLASS A",                                        "asset_type": "Equity", "qty":    10, "cost_basis":   2015.10, "multiplier": 1},
+    # Updated 2026-04-14: partial sells executed for tax settlement
+    {"symbol": "IBIT",                "display": "IBIT",                    "description": "ISHARES BITCOIN TRUST ETF",                                  "asset_type": "ETF",    "qty":  2337, "cost_basis": 128336.15, "multiplier": 1},
+    {"symbol": "ASTS",                "display": "ASTS",                    "description": "AST SPACEMOBILE INC CLASS CLASS A",                          "asset_type": "Equity", "qty":    49, "cost_basis":   3611.30, "multiplier": 1},
+    {"symbol": "AMD",                 "display": "AMD",                     "description": "ADVANCED MICRO DEVIC",                                        "asset_type": "Equity", "qty":    14, "cost_basis":   3474.94, "multiplier": 1},
+    {"symbol": "TSLA",                "display": "TSLA",                    "description": "TESLA INC",                                                   "asset_type": "Equity", "qty":    11, "cost_basis":   4694.07, "multiplier": 1},
+    {"symbol": "PLTR",                "display": "PLTR",                    "description": "PALANTIR TECHNOLOGIES INCLASS CLASS A",                       "asset_type": "Equity", "qty":    24, "cost_basis":   4358.92, "multiplier": 1},
+    {"symbol": "TSM",                 "display": "TSM",                     "description": "TAIWAN SEMICONDUCTOR M FSPONSORED ADR 1 ADR REPS 5 ORD SHS", "asset_type": "Equity", "qty":     7, "cost_basis":   2074.45, "multiplier": 1},
+    {"symbol": "HOOD",                "display": "HOOD",                    "description": "ROBINHOOD MKTS INC CLASS CLASS A",                            "asset_type": "Equity", "qty":    32, "cost_basis":   4148.63, "multiplier": 1},
+    {"symbol": "HIMS",                "display": "HIMS",                    "description": "HIMS & HERS HEALTH INC CLASS CLASS A",                        "asset_type": "Equity", "qty":    69, "cost_basis":   2715.12, "multiplier": 1},
+    {"symbol": "OKLO",                "display": "OKLO",                    "description": "OKLO INC CLASS A",                                            "asset_type": "Equity", "qty":    30, "cost_basis":   2147.55, "multiplier": 1},
+    {"symbol": "DUOL",                "display": "DUOL",                    "description": "DUOLINGO INC CLASS A",                                        "asset_type": "Equity", "qty":    16, "cost_basis":   2830.48, "multiplier": 1},
+    {"symbol": "MSTR",                "display": "MSTR",                    "description": "STRATEGY INC CLASS A",                                        "asset_type": "Equity", "qty":     8, "cost_basis":   1612.08, "multiplier": 1},
     {"symbol": "IBIT270115C00045000", "display": "IBIT 01/15/2027 45.00 C", "description": "CALL ISHR BITCOIN TR ETF$45 EXP 01/15/27",                   "asset_type": "Option", "qty":     5, "cost_basis":   8878.30, "multiplier": 100},
     {"symbol": "IBIT271217C00045000", "display": "IBIT 12/17/2027 45.00 C", "description": "CALL ISHR BITCOIN TR ETF$45 EXP 12/17/27",                   "asset_type": "Option", "qty":     1, "cost_basis":   2845.66, "multiplier": 100},
     {"symbol": "IBIT280121P00040000", "display": "IBIT 01/21/2028 40.00 P", "description": "PUT ISHR BITCOIN TR ETF $40 EXP 01/21/28",                   "asset_type": "Option", "qty":    -1, "cost_basis":   -714.34, "multiplier": 100},
 ]
 
 # ── Fund Parameters ──────────────────────────────────────────────────────────
-TOTAL_SHARES   = 17731.906   # Total shares outstanding (Class A + Class B)
-OTHER_ASSETS   = 997.0       # Non-Schwab assets (cash/other); update if changed
+TOTAL_SHARES   = 16992.6672303254   # Updated 2026-04-14: 739.239 shares retired (tax dilution)
+OTHER_ASSETS   = 997.0              # Non-Schwab assets (cash/other); update if changed
 INCEPTION_DATE = "2024-01-01"
 
+# Updated 2026-04-14: share dilution for 2025 LTCG tax settlement at $6.79/share
+# Logikeconomy: -337.9411 B | W.Gil: -288.5479 B | J.Yanovich: -69.4860 B
+# Familia Castro: -33.5523 A | Julián Castro: -9.7113 B
 MEMBERS = {
-    "mongol":          {"name": "Mongol",          "shares_a": 2050.00, "shares_b": 2871.9183},
-    "7m":              {"name": "7M",              "shares_a": 2003.00, "shares_b": 2724.0000},
-    "lerd":            {"name": "Lerd",            "shares_a": 2532.00, "shares_b": 3003.3083},
-    "jacucha":         {"name": "Jacucha",         "shares_a": 1031.00, "shares_b":  106.8637},
-    "vargas":          {"name": "Vargas",          "shares_a":  609.00, "shares_b":   91.8480},
-    "familia_gump":    {"name": "Familia Gump",    "shares_a":  550.00, "shares_b":    0.0000},
-    "gump_individual": {"name": "Gump Individual", "shares_a":    0.00, "shares_b":  158.9676},
+    "mongol":          {"name": "Mongol",          "shares_a": 2050.0000, "shares_b": 2871.9183},
+    "7m":              {"name": "7M",              "shares_a": 2003.0000, "shares_b": 2435.4521},
+    "lerd":            {"name": "Lerd",            "shares_a": 2532.0000, "shares_b": 2665.3672},
+    "jacucha":         {"name": "Jacucha",         "shares_a": 1031.0000, "shares_b":   37.3777},
+    "vargas":          {"name": "Vargas",          "shares_a":  609.0000, "shares_b":   91.8480},
+    "familia_gump":    {"name": "Familia Gump",    "shares_a":  516.4477, "shares_b":    0.0000},
+    "gump_individual": {"name": "Gump Individual", "shares_a":    0.0000, "shares_b":  149.2562},
 }
 
 
