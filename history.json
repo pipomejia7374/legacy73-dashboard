@@ -550,6 +550,12 @@
       "schwab": 119337.18,
       "total": 120334.18,
       "share_price": 6.7863
+    },
+    {
+      "date": "2026-04-14",
+      "schwab": 134740.3,
+      "total": 135737.3,
+      "share_price": 7.655
     }
   ],
   "monthly": [
@@ -694,9 +700,9 @@
       "share_price": 6.2771
     },
     {
-      "date": "2026-04-11",
-      "total": 120334.18,
-      "share_price": 6.7863
+      "date": "2026-04-01",
+      "total": 135737.3,
+      "share_price": 7.655
     }
   ]
 }
