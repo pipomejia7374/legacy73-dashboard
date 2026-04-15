@@ -2,8 +2,15 @@ name: Update Dashboard
 
 on:
   schedule:
-    - cron: '15 21 * * 1-5'
+    # Market closes 4 PM ET. GitHub Actions free tier can delay scheduled jobs
+    # by 30 min to 3+ hours. Running at 4 different times ensures at least one
+    # fires promptly. The script skips automatically if already updated that day.
+    - cron: '0 20 * * 1-5'   # 8 PM UTC  = 4 PM EDT / 3 PM EST
+    - cron: '0 21 * * 1-5'   # 9 PM UTC  = 5 PM EDT / 4 PM EST
+    - cron: '0 22 * * 1-5'   # 10 PM UTC = 6 PM EDT / 5 PM EST
+    - cron: '0 23 * * 1-5'   # 11 PM UTC = 7 PM EDT / 6 PM EST
   workflow_dispatch:
+    # Allows manual trigger from GitHub → Actions tab → "Run workflow"
     inputs:
       force:
         description: 'Force update even if already run today'
@@ -14,7 +21,7 @@ jobs:
   update:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write   # needed to commit data.json / history.json back to repo
 
     steps:
       - name: Checkout repository
@@ -42,7 +49,7 @@ jobs:
           git config user.email "bot@noreply.github.com"
           git add data.json history.json
           if git diff --staged --quiet; then
-            echo "No changes to commit"
+            echo "No changes to commit (market may have been closed today)"
           else
             git commit -m "auto: update dashboard $(date -u +%Y-%m-%d)"
             git push
