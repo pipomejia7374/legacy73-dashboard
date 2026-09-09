@@ -1,32 +1,32 @@
 {
-  "updated": "2026-09-04",
+  "updated": "2026-09-09",
   "portfolio": {
-    "schwab_value": 139864.22,
-    "total_value": 140861.22,
-    "share_price": 8.2895,
-    "ma30": 7.6415,
-    "ma50": 7.3224,
-    "ma90": 7.3555,
-    "change_1d": 0.0878,
-    "change_1d_pct": 1.07,
-    "change_1w": 0.2138,
-    "change_1w_pct": 2.65,
-    "change_1m": 1.5094,
-    "change_1m_pct": 22.26,
-    "change_ytd": -0.5176,
-    "change_ytd_pct": -5.88,
-    "change_inc": 0.5461,
-    "change_inc_pct": 7.05,
-    "cagr": 2.58,
+    "schwab_value": 137754.89,
+    "total_value": 138751.89,
+    "share_price": 8.1654,
+    "ma30": 6.6064,
+    "ma50": 6.5368,
+    "ma90": 6.9685,
+    "change_1d": -0.0364,
+    "change_1d_pct": -0.44,
+    "change_1w": 1.5614,
+    "change_1w_pct": 23.64,
+    "change_1m": 1.7273,
+    "change_1m_pct": 26.83,
+    "change_ytd": -0.6417,
+    "change_ytd_pct": -7.29,
+    "change_inc": 0.422,
+    "change_inc_pct": 5.45,
+    "cagr": 1.99,
     "max_price": 12.5475,
     "max_date": "2025-10-06",
     "min_price": 6.003,
     "min_date": "2026-02-23",
-    "drawdown_pct": -33.94,
-    "drawdown_usd": -4.258,
-    "days_since_max": 333,
-    "price_vs_ma30": 8.48,
-    "price_vs_ma90": 12.7
+    "drawdown_pct": -34.92,
+    "drawdown_usd": -4.3821,
+    "days_since_max": 338,
+    "price_vs_ma30": 23.6,
+    "price_vs_ma90": 17.18
   },
   "shares": {
     "total_a": 8741.45,
@@ -40,8 +40,8 @@
       "shares_b": 2871.9183,
       "total_shares": 4921.9183,
       "pct": 28.965,
-      "value": 40800.24,
-      "change_1d": 432.14
+      "value": 40189.43,
+      "change_1d": -179.16
     },
     "7m": {
       "name": "7M",
@@ -49,8 +49,8 @@
       "shares_b": 2435.4521,
       "total_shares": 4438.4521,
       "pct": 26.1198,
-      "value": 36792.55,
-      "change_1d": 389.7
+      "value": 36241.74,
+      "change_1d": -161.56
     },
     "lerd": {
       "name": "Lerd",
@@ -58,8 +58,8 @@
       "shares_b": 2665.3672,
       "total_shares": 5197.3672,
       "pct": 30.5859,
-      "value": 43083.58,
-      "change_1d": 456.33
+      "value": 42438.58,
+      "change_1d": -189.18
     },
     "jacucha": {
       "name": "Jacucha",
@@ -67,8 +67,8 @@
       "shares_b": 37.3777,
       "total_shares": 1068.3777,
       "pct": 6.2873,
-      "value": 8856.32,
-      "change_1d": 93.8
+      "value": 8723.73,
+      "change_1d": -38.89
     },
     "vargas": {
       "name": "Vargas",
@@ -76,8 +76,8 @@
       "shares_b": 91.848,
       "total_shares": 700.848,
       "pct": 4.1244,
-      "value": 5809.68,
-      "change_1d": 61.53
+      "value": 5722.7,
+      "change_1d": -25.51
     },
     "familia_gump": {
       "name": "Familia Gump",
@@ -85,8 +85,8 @@
       "shares_b": 0.0,
       "total_shares": 516.4477,
       "pct": 3.0392,
-      "value": 4281.09,
-      "change_1d": 45.34
+      "value": 4217.0,
+      "change_1d": -18.8
     },
     "gump_individual": {
       "name": "Gump Individual",
@@ -94,647 +94,647 @@
       "shares_b": 149.2562,
       "total_shares": 149.2562,
       "pct": 0.8784,
-      "value": 1237.26,
-      "change_1d": 13.1
+      "value": 1218.74,
+      "change_1d": -5.43
     }
   },
   "chart_3m": [
     {
-      "date": "2026-05-06",
-      "schwab": 142612.6,
-      "total": 143609.6,
-      "share_price": 8.4513,
-      "ma50": 6.977
+      "date": "2026-01-14",
+      "schwab": 166553.78,
+      "total": 166621.28,
+      "share_price": 9.4904,
+      "ma50": null
     },
     {
-      "date": "2026-05-07",
-      "schwab": 139768.02,
-      "total": 140765.02,
-      "share_price": 8.2839,
-      "ma50": 7.0114
+      "date": "2026-01-15",
+      "schwab": 162162.79,
+      "total": 162230.29,
+      "share_price": 9.2403,
+      "ma50": null
     },
     {
-      "date": "2026-05-08",
-      "schwab": 141367.02,
-      "total": 142364.02,
-      "share_price": 8.378,
-      "ma50": 7.046
+      "date": "2026-01-16",
+      "schwab": 163388.02,
+      "total": 163455.52,
+      "share_price": 9.31,
+      "ma50": null
     },
     {
-      "date": "2026-05-11",
-      "schwab": 145054.98,
-      "total": 146051.98,
-      "share_price": 8.595,
-      "ma50": 7.0864
+      "date": "2026-01-17",
+      "schwab": 163388.02,
+      "total": 163455.52,
+      "share_price": 9.31,
+      "ma50": null
     },
     {
-      "date": "2026-05-12",
-      "schwab": 141823.24,
-      "total": 142820.24,
-      "share_price": 8.4048,
-      "ma50": 7.1219
+      "date": "2026-01-18",
+      "schwab": 163388.02,
+      "total": 163455.52,
+      "share_price": 9.31,
+      "ma50": null
     },
     {
-      "date": "2026-05-13",
-      "schwab": 139698.78,
-      "total": 140695.78,
-      "share_price": 8.2798,
-      "ma50": 7.1548
+      "date": "2026-01-19",
+      "schwab": 163388.02,
+      "total": 163455.52,
+      "share_price": 9.31,
+      "ma50": null
     },
     {
-      "date": "2026-05-14",
-      "schwab": 143445.94,
-      "total": 144442.94,
-      "share_price": 8.5003,
-      "ma50": 7.1922
+      "date": "2026-01-20",
+      "schwab": 152657.91,
+      "total": 152725.41,
+      "share_price": 8.6989,
+      "ma50": null
     },
     {
-      "date": "2026-05-15",
-      "schwab": 138806.67,
-      "total": 139803.67,
-      "share_price": 8.2273,
-      "ma50": 7.2187
+      "date": "2026-01-21",
+      "schwab": 153312.11,
+      "total": 153379.61,
+      "share_price": 8.7361,
+      "ma50": null
     },
     {
-      "date": "2026-05-18",
-      "schwab": 134836.53,
-      "total": 135833.53,
-      "share_price": 7.9937,
-      "ma50": 7.2389
+      "date": "2026-01-22",
+      "schwab": 153507.1,
+      "total": 153574.6,
+      "share_price": 8.7472,
+      "ma50": null
     },
     {
-      "date": "2026-05-19",
-      "schwab": 134395.84,
-      "total": 135392.84,
-      "share_price": 7.9677,
-      "ma50": 7.2658
+      "date": "2026-01-23",
+      "schwab": 153460.64,
+      "total": 153528.14,
+      "share_price": 8.7446,
+      "ma50": null
     },
     {
-      "date": "2026-05-20",
-      "schwab": 136705.05,
-      "total": 137702.05,
-      "share_price": 8.1036,
-      "ma50": 7.2964
+      "date": "2026-01-24",
+      "schwab": 153460.64,
+      "total": 153528.14,
+      "share_price": 8.7446,
+      "ma50": null
     },
     {
-      "date": "2026-05-21",
-      "schwab": 137197.26,
-      "total": 138194.26,
-      "share_price": 8.1326,
-      "ma50": 7.329
+      "date": "2026-01-25",
+      "schwab": 153460.64,
+      "total": 153528.14,
+      "share_price": 8.7446,
+      "ma50": null
     },
     {
-      "date": "2026-05-22",
-      "schwab": 135046.68,
-      "total": 136043.68,
-      "share_price": 8.006,
-      "ma50": 7.3591
+      "date": "2026-01-26",
+      "schwab": 149369.21,
+      "total": 149436.71,
+      "share_price": 8.5116,
+      "ma50": null
     },
     {
-      "date": "2026-05-26",
-      "schwab": 136532.17,
-      "total": 137529.17,
-      "share_price": 8.0934,
-      "ma50": 7.3909
+      "date": "2026-01-27",
+      "schwab": 152363.52,
+      "total": 152431.02,
+      "share_price": 8.6821,
+      "ma50": null
     },
     {
-      "date": "2026-05-27",
-      "schwab": 135598.4,
-      "total": 136595.4,
-      "share_price": 8.0385,
-      "ma50": 7.42
+      "date": "2026-01-28",
+      "schwab": 152397.17,
+      "total": 152464.67,
+      "share_price": 8.684,
+      "ma50": null
     },
     {
-      "date": "2026-05-28",
-      "schwab": 134200.81,
-      "total": 135197.81,
-      "share_price": 7.9562,
-      "ma50": 7.4503
+      "date": "2026-01-29",
+      "schwab": 143608.7,
+      "total": 143676.2,
+      "share_price": 8.1835,
+      "ma50": null
     },
     {
-      "date": "2026-05-29",
-      "schwab": 134011.93,
-      "total": 135008.93,
-      "share_price": 7.9451,
-      "ma50": 7.4767
+      "date": "2026-01-30",
+      "schwab": 141616.28,
+      "total": 141683.78,
+      "share_price": 8.07,
+      "ma50": null
     },
     {
-      "date": "2026-06-01",
-      "schwab": 130537.25,
-      "total": 131534.25,
-      "share_price": 7.7406,
-      "ma50": 7.5047
+      "date": "2026-01-31",
+      "schwab": 141616.28,
+      "total": 141683.78,
+      "share_price": 8.07,
+      "ma50": null
     },
     {
-      "date": "2026-06-02",
-      "schwab": 124718.54,
-      "total": 125715.54,
-      "share_price": 7.3982,
-      "ma50": 7.5317
+      "date": "2026-02-01",
+      "schwab": 141616.28,
+      "total": 141683.78,
+      "share_price": 8.07,
+      "ma50": null
     },
     {
-      "date": "2026-06-03",
-      "schwab": 120934.83,
-      "total": 121931.83,
-      "share_price": 7.1756,
-      "ma50": 7.5542
+      "date": "2026-02-02",
+      "schwab": 131783.19,
+      "total": 131825.69,
+      "share_price": 7.5085,
+      "ma50": null
     },
     {
-      "date": "2026-06-04",
-      "schwab": 118368.75,
-      "total": 119365.75,
-      "share_price": 7.0245,
-      "ma50": 7.5736
+      "date": "2026-02-03",
+      "schwab": 129703.0,
+      "total": 130745.5,
+      "share_price": 7.383,
+      "ma50": null
     },
     {
-      "date": "2026-06-05",
-      "schwab": 110865.16,
-      "total": 111862.16,
+      "date": "2026-02-04",
+      "schwab": 121934.47,
+      "total": 122976.97,
+      "share_price": 6.9444,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-05",
+      "schwab": 105437.44,
+      "total": 106479.94,
+      "share_price": 6.0128,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-06",
+      "schwab": 117117.58,
+      "total": 118160.08,
+      "share_price": 6.6724,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-07",
+      "schwab": 117117.58,
+      "total": 118160.08,
+      "share_price": 6.6724,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-08",
+      "schwab": 117117.58,
+      "total": 118160.08,
+      "share_price": 6.6724,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-09",
+      "schwab": 118580.52,
+      "total": 119623.02,
+      "share_price": 6.7462,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-10",
+      "schwab": 114799.9,
+      "total": 115842.4,
+      "share_price": 6.5415,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-11",
+      "schwab": 112291.13,
+      "total": 113333.63,
+      "share_price": 6.3998,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-12",
+      "schwab": 107273.76,
+      "total": 108316.26,
+      "share_price": 6.1165,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-13",
+      "schwab": 112874.46,
+      "total": 113916.96,
+      "share_price": 6.4328,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-14",
+      "schwab": 112874.46,
+      "total": 113916.96,
+      "share_price": 6.4328,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-15",
+      "schwab": 112874.46,
+      "total": 113916.96,
+      "share_price": 6.4328,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-16",
+      "schwab": 112874.46,
+      "total": 113916.96,
+      "share_price": 6.4328,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-17",
+      "schwab": 111133.81,
+      "total": 112176.31,
+      "share_price": 6.3345,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-18",
+      "schwab": 108808.4,
+      "total": 109850.9,
+      "share_price": 6.2031,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-19",
+      "schwab": 110367.52,
+      "total": 111410.02,
+      "share_price": 6.283,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-20",
+      "schwab": 110860.81,
+      "total": 111903.31,
+      "share_price": 6.3108,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-21",
+      "schwab": 110860.81,
+      "total": 111903.31,
+      "share_price": 6.3108,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-22",
+      "schwab": 110860.81,
+      "total": 111903.31,
+      "share_price": 6.3108,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-23",
+      "schwab": 105402.41,
+      "total": 106444.91,
+      "share_price": 6.003,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-24",
+      "schwab": 106145.49,
+      "total": 107187.99,
+      "share_price": 6.0449,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-25",
+      "schwab": 113755.24,
+      "total": 114797.74,
+      "share_price": 6.4741,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-26",
+      "schwab": 111221.79,
+      "total": 112264.29,
+      "share_price": 6.3312,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-27",
+      "schwab": 106974.02,
+      "total": 108016.52,
+      "share_price": 6.0916,
+      "ma50": null
+    },
+    {
+      "date": "2026-02-28",
+      "schwab": 106974.02,
+      "total": 108016.52,
+      "share_price": 6.0916,
+      "ma50": null
+    },
+    {
+      "date": "2026-03-01",
+      "schwab": 106974.02,
+      "total": 108016.52,
+      "share_price": 6.0916,
+      "ma50": 7.4771
+    },
+    {
+      "date": "2026-03-02",
+      "schwab": 113367.67,
+      "total": 114370.17,
+      "share_price": 6.45,
+      "ma50": 7.43
+    },
+    {
+      "date": "2026-03-03",
+      "schwab": 111664.74,
+      "total": 112667.24,
+      "share_price": 6.3539,
+      "ma50": 7.3787
+    },
+    {
+      "date": "2026-03-04",
+      "schwab": 120767.42,
+      "total": 121769.92,
+      "share_price": 6.8673,
+      "ma50": 7.3322
+    },
+    {
+      "date": "2026-03-05",
+      "schwab": 117069.27,
+      "total": 118071.77,
+      "share_price": 6.6587,
+      "ma50": 7.2756
+    },
+    {
+      "date": "2026-03-06",
+      "schwab": 111440.21,
+      "total": 112442.71,
+      "share_price": 6.3413,
+      "ma50": 7.2176
+    },
+    {
+      "date": "2026-03-07",
+      "schwab": 111440.21,
+      "total": 112442.71,
+      "share_price": 6.3413,
+      "ma50": 7.1582
+    },
+    {
+      "date": "2026-03-08",
+      "schwab": 111440.21,
+      "total": 112442.71,
+      "share_price": 6.3413,
+      "ma50": 7.0989
+    },
+    {
+      "date": "2026-03-09",
+      "schwab": 114029.25,
+      "total": 115031.75,
+      "share_price": 6.4873,
+      "ma50": 7.0424
+    },
+    {
+      "date": "2026-03-10",
+      "schwab": 115362.06,
+      "total": 116364.56,
+      "share_price": 6.5624,
+      "ma50": 6.9875
+    },
+    {
+      "date": "2026-03-11",
+      "schwab": 116890.74,
+      "total": 117893.24,
+      "share_price": 6.6486,
+      "ma50": 6.9464
+    },
+    {
+      "date": "2026-03-12",
+      "schwab": 115617.88,
+      "total": 116620.38,
+      "share_price": 6.5769,
+      "ma50": 6.9033
+    },
+    {
+      "date": "2026-03-13",
+      "schwab": 116579.23,
+      "total": 117581.73,
+      "share_price": 6.6311,
+      "ma50": 6.8609
+    },
+    {
+      "date": "2026-03-14",
+      "schwab": 116579.23,
+      "total": 117581.73,
+      "share_price": 6.6311,
+      "ma50": 6.8187
+    },
+    {
+      "date": "2026-03-15",
+      "schwab": 116579.23,
+      "total": 117581.73,
+      "share_price": 6.6311,
+      "ma50": 6.7764
+    },
+    {
+      "date": "2026-03-16",
+      "schwab": 121375.2,
+      "total": 122377.7,
+      "share_price": 6.9016,
+      "ma50": 6.7395
+    },
+    {
+      "date": "2026-03-17",
+      "schwab": 122895.2,
+      "total": 123897.7,
+      "share_price": 6.9873,
+      "ma50": 6.7091
+    },
+    {
+      "date": "2026-03-18",
+      "schwab": 116432.55,
+      "total": 117435.05,
+      "share_price": 6.6228,
+      "ma50": 6.6679
+    },
+    {
+      "date": "2026-03-19",
+      "schwab": 115504.1,
+      "total": 116506.6,
+      "share_price": 6.5705,
+      "ma50": 6.6256
+    },
+    {
+      "date": "2026-03-20",
+      "schwab": 114311.38,
+      "total": 115313.88,
+      "share_price": 6.5032,
+      "ma50": 6.592
+    },
+    {
+      "date": "2026-03-21",
+      "schwab": 114311.38,
+      "total": 115313.88,
+      "share_price": 6.5032,
+      "ma50": 6.5607
+    },
+    {
+      "date": "2026-03-22",
+      "schwab": 114311.38,
+      "total": 115313.88,
+      "share_price": 6.5032,
+      "ma50": 6.5293
+    },
+    {
+      "date": "2026-03-23",
+      "schwab": 115726.92,
+      "total": 116729.42,
       "share_price": 6.583,
-      "ma50": 7.5846
+      "ma50": 6.4996
     },
     {
-      "date": "2026-06-08",
-      "schwab": 112933.21,
-      "total": 113930.21,
-      "share_price": 6.7047,
-      "ma50": 7.5939
+      "date": "2026-03-24",
+      "schwab": 113157.54,
+      "total": 114160.04,
+      "share_price": 6.4381,
+      "ma50": 6.4782
     },
     {
-      "date": "2026-06-09",
-      "schwab": 113576.22,
-      "total": 114573.22,
-      "share_price": 6.7425,
-      "ma50": 7.6032
+      "date": "2026-03-25",
+      "schwab": 116471.18,
+      "total": 117473.68,
+      "share_price": 6.625,
+      "ma50": 6.463
     },
     {
-      "date": "2026-06-10",
-      "schwab": 112634.98,
-      "total": 113631.98,
-      "share_price": 6.6871,
-      "ma50": 7.6132
+      "date": "2026-03-26",
+      "schwab": 111455.2,
+      "total": 112457.7,
+      "share_price": 6.3421,
+      "ma50": 6.451
     },
     {
-      "date": "2026-06-11",
-      "schwab": 116838.56,
-      "total": 117835.56,
-      "share_price": 6.9345,
-      "ma50": 7.6282
+      "date": "2026-03-27",
+      "schwab": 106283.94,
+      "total": 107286.44,
+      "share_price": 6.0505,
+      "ma50": 6.4517
     },
     {
-      "date": "2026-06-12",
-      "schwab": 116226.75,
-      "total": 117223.75,
-      "share_price": 6.8985,
-      "ma50": 7.6424
+      "date": "2026-03-28",
+      "schwab": 106283.94,
+      "total": 107286.44,
+      "share_price": 6.0505,
+      "ma50": 6.4393
     },
     {
-      "date": "2026-06-15",
-      "schwab": 122302.29,
-      "total": 123299.29,
-      "share_price": 7.256,
-      "ma50": 7.6638
+      "date": "2026-03-29",
+      "schwab": 106283.94,
+      "total": 107286.44,
+      "share_price": 6.0505,
+      "ma50": 6.4268
     },
     {
-      "date": "2026-06-16",
-      "schwab": 119657.42,
-      "total": 120654.42,
-      "share_price": 7.1004,
-      "ma50": 7.677
+      "date": "2026-03-30",
+      "schwab": 105967.71,
+      "total": 106970.21,
+      "share_price": 6.0326,
+      "ma50": 6.4141
     },
     {
-      "date": "2026-06-17",
-      "schwab": 117902.59,
-      "total": 118899.59,
-      "share_price": 6.9971,
-      "ma50": 7.6898
+      "date": "2026-03-31",
+      "schwab": 109674.33,
+      "total": 110676.83,
+      "share_price": 6.2417,
+      "ma50": 6.404
     },
     {
-      "date": "2026-06-18",
-      "schwab": 116743.0,
-      "total": 117740.0,
-      "share_price": 6.9289,
-      "ma50": 7.6969
+      "date": "2026-04-01",
+      "schwab": 110302.94,
+      "total": 111305.44,
+      "share_price": 6.2771,
+      "ma50": 6.3987
     },
     {
-      "date": "2026-06-22",
-      "schwab": 115081.34,
-      "total": 116078.34,
-      "share_price": 6.8311,
-      "ma50": 7.7015
+      "date": "2026-04-02",
+      "schwab": 108693.95,
+      "total": 109696.45,
+      "share_price": 6.1864,
+      "ma50": 6.3944
     },
     {
-      "date": "2026-06-23",
-      "schwab": 114148.28,
-      "total": 115145.28,
-      "share_price": 6.7762,
-      "ma50": 7.7025
+      "date": "2026-04-03",
+      "schwab": 108693.95,
+      "total": 109696.45,
+      "share_price": 6.1864,
+      "ma50": 6.3958
     },
     {
-      "date": "2026-06-24",
-      "schwab": 109874.3,
-      "total": 110871.3,
-      "share_price": 6.5247,
-      "ma50": 7.6972
+      "date": "2026-04-04",
+      "schwab": 108693.95,
+      "total": 109696.45,
+      "share_price": 6.1864,
+      "ma50": 6.3909
     },
     {
-      "date": "2026-06-25",
-      "schwab": 108288.34,
-      "total": 109285.34,
-      "share_price": 6.4313,
-      "ma50": 7.6739
+      "date": "2026-04-05",
+      "schwab": 108693.95,
+      "total": 109696.45,
+      "share_price": 6.1864,
+      "ma50": 6.3859
     },
     {
-      "date": "2026-06-26",
-      "schwab": 109576.46,
-      "total": 110573.46,
-      "share_price": 6.5071,
-      "ma50": 7.6496
+      "date": "2026-04-06",
+      "schwab": 113187.54,
+      "total": 114190.04,
+      "share_price": 6.4398,
+      "ma50": 6.3861
     },
     {
-      "date": "2026-06-29",
-      "schwab": 112106.68,
-      "total": 113103.68,
-      "share_price": 6.656,
-      "ma50": 7.6267
+      "date": "2026-04-07",
+      "schwab": 111770.42,
+      "total": 112772.92,
+      "share_price": 6.3599,
+      "ma50": 6.3846
     },
     {
-      "date": "2026-06-30",
-      "schwab": 110752.13,
-      "total": 111749.13,
-      "share_price": 6.5763,
-      "ma50": 7.598
+      "date": "2026-04-08",
+      "schwab": 115508.17,
+      "total": 116510.67,
+      "share_price": 6.5707,
+      "ma50": 6.3894
     },
     {
-      "date": "2026-07-01",
-      "schwab": 112551.34,
-      "total": 113548.34,
-      "share_price": 6.6822,
-      "ma50": 7.5737
+      "date": "2026-04-09",
+      "schwab": 116104.37,
+      "total": 117101.34,
+      "share_price": 6.604,
+      "ma50": 6.3974
     },
     {
-      "date": "2026-07-02",
-      "schwab": 114265.49,
-      "total": 115262.49,
-      "share_price": 6.7831,
-      "ma50": 7.5543
+      "date": "2026-04-10",
+      "schwab": 118296.17,
+      "total": 119293.17,
+      "share_price": 6.7276,
+      "ma50": 6.4063
     },
     {
-      "date": "2026-07-06",
-      "schwab": 118515.76,
-      "total": 119512.76,
-      "share_price": 7.0332,
-      "ma50": 7.5313
-    },
-    {
-      "date": "2026-07-07",
-      "schwab": 117097.26,
-      "total": 118094.26,
-      "share_price": 6.9497,
-      "ma50": 7.5099
-    },
-    {
-      "date": "2026-07-08",
-      "schwab": 114572.8,
-      "total": 115569.8,
-      "share_price": 6.8012,
-      "ma50": 7.485
-    },
-    {
-      "date": "2026-07-09",
-      "schwab": 116530.39,
-      "total": 117527.39,
-      "share_price": 6.9164,
-      "ma50": 7.4639
-    },
-    {
-      "date": "2026-07-10",
-      "schwab": 117381.28,
-      "total": 118378.28,
-      "share_price": 6.9664,
-      "ma50": 7.4458
-    },
-    {
-      "date": "2026-07-13",
-      "schwab": 113960.18,
-      "total": 114957.18,
-      "share_price": 6.7651,
-      "ma50": 7.4262
-    },
-    {
-      "date": "2026-07-14",
-      "schwab": 117930.64,
-      "total": 118927.64,
-      "share_price": 6.9988,
-      "ma50": 7.4082
-    },
-    {
-      "date": "2026-07-15",
-      "schwab": 118299.77,
-      "total": 119296.77,
-      "share_price": 7.0205,
-      "ma50": 7.3867
-    },
-    {
-      "date": "2026-07-16",
-      "schwab": 115443.82,
-      "total": 116440.82,
-      "share_price": 6.8524,
-      "ma50": 7.3591
-    },
-    {
-      "date": "2026-07-17",
-      "schwab": 114948.62,
-      "total": 115945.62,
-      "share_price": 6.8233,
-      "ma50": 7.3285
-    },
-    {
-      "date": "2026-07-20",
-      "schwab": 116424.12,
-      "total": 117421.12,
-      "share_price": 6.9101,
-      "ma50": 7.2977
-    },
-    {
-      "date": "2026-07-21",
-      "schwab": 119719.06,
-      "total": 120716.06,
-      "share_price": 7.104,
-      "ma50": 7.2741
-    },
-    {
-      "date": "2026-07-22",
-      "schwab": 118413.03,
-      "total": 119410.03,
-      "share_price": 7.0272,
-      "ma50": 7.247
-    },
-    {
-      "date": "2026-07-23",
-      "schwab": 115587.44,
-      "total": 116584.44,
-      "share_price": 6.8609,
-      "ma50": 7.2124
-    },
-    {
-      "date": "2026-07-24",
-      "schwab": 113567.86,
-      "total": 114564.86,
-      "share_price": 6.742,
-      "ma50": 7.1791
-    },
-    {
-      "date": "2026-07-27",
-      "schwab": 114929.75,
-      "total": 115926.75,
-      "share_price": 6.8222,
-      "ma50": 7.1499
-    },
-    {
-      "date": "2026-07-28",
-      "schwab": 112277.3,
-      "total": 113274.3,
-      "share_price": 6.6661,
-      "ma50": 7.1133
-    },
-    {
-      "date": "2026-07-29",
-      "schwab": 110644.96,
-      "total": 111641.96,
-      "share_price": 6.57,
-      "ma50": 7.0801
-    },
-    {
-      "date": "2026-07-30",
-      "schwab": 113845.86,
-      "total": 114842.86,
-      "share_price": 6.7584,
-      "ma50": 7.0554
-    },
-    {
-      "date": "2026-07-31",
-      "schwab": 111019.95,
-      "total": 112016.95,
-      "share_price": 6.5921,
-      "ma50": 7.0279
-    },
-    {
-      "date": "2026-08-03",
-      "schwab": 113330.35,
-      "total": 114327.35,
-      "share_price": 6.728,
-      "ma50": 7.0004
-    },
-    {
-      "date": "2026-08-04",
-      "schwab": 116037.58,
-      "total": 117034.58,
-      "share_price": 6.8874,
-      "ma50": 6.9755
-    },
-    {
-      "date": "2026-08-05",
-      "schwab": 116043.3,
-      "total": 117040.3,
-      "share_price": 6.8877,
-      "ma50": 6.9531
-    },
-    {
-      "date": "2026-08-06",
-      "schwab": 114958.04,
-      "total": 115955.04,
-      "share_price": 6.8238,
-      "ma50": 6.9277
-    },
-    {
-      "date": "2026-08-07",
-      "schwab": 116946.17,
-      "total": 117943.17,
-      "share_price": 6.9408,
-      "ma50": 6.9058
-    },
-    {
-      "date": "2026-08-10",
-      "schwab": 115232.23,
-      "total": 116229.23,
-      "share_price": 6.84,
-      "ma50": 6.8834
-    },
-    {
-      "date": "2026-08-11",
-      "schwab": 114694.93,
-      "total": 115691.93,
-      "share_price": 6.8083,
-      "ma50": 6.8607
-    },
-    {
-      "date": "2026-08-12",
-      "schwab": 114570.43,
-      "total": 115567.43,
-      "share_price": 6.801,
-      "ma50": 6.8419
-    },
-    {
-      "date": "2026-08-13",
-      "schwab": 114998.28,
-      "total": 115995.28,
-      "share_price": 6.8262,
-      "ma50": 6.8305
-    },
-    {
-      "date": "2026-08-14",
-      "schwab": 114214.44,
-      "total": 115211.44,
-      "share_price": 6.7801,
-      "ma50": 6.8226
-    },
-    {
-      "date": "2026-08-17",
-      "schwab": 116145.68,
-      "total": 117142.68,
-      "share_price": 6.8937,
-      "ma50": 6.82
-    },
-    {
-      "date": "2026-08-18",
-      "schwab": 115702.56,
-      "total": 116699.56,
-      "share_price": 6.8676,
-      "ma50": 6.8256
-    },
-    {
-      "date": "2026-08-19",
-      "schwab": 122021.35,
-      "total": 123018.35,
-      "share_price": 7.2395,
-      "ma50": 6.8363
-    },
-    {
-      "date": "2026-08-20",
-      "schwab": 128426.12,
-      "total": 129423.12,
-      "share_price": 7.6164,
-      "ma50": 6.8538
-    },
-    {
-      "date": "2026-08-21",
-      "schwab": 136327.94,
-      "total": 137324.94,
-      "share_price": 8.0814,
-      "ma50": 6.8817
-    },
-    {
-      "date": "2026-08-24",
-      "schwab": 137687.95,
-      "total": 138684.95,
-      "share_price": 8.1615,
-      "ma50": 6.9062
-    },
-    {
-      "date": "2026-08-25",
-      "schwab": 138647.3,
-      "total": 139644.3,
-      "share_price": 8.2179,
-      "ma50": 6.9326
-    },
-    {
-      "date": "2026-08-26",
-      "schwab": 137389.66,
-      "total": 138386.66,
-      "share_price": 8.1439,
-      "ma50": 6.9504
-    },
-    {
-      "date": "2026-08-27",
-      "schwab": 140403.22,
-      "total": 141400.22,
-      "share_price": 8.3212,
-      "ma50": 6.9748
-    },
-    {
-      "date": "2026-08-28",
-      "schwab": 135619.86,
-      "total": 136616.86,
-      "share_price": 8.0398,
-      "ma50": 6.9957
-    },
-    {
-      "date": "2026-08-31",
-      "schwab": 138156.9,
-      "total": 139153.9,
-      "share_price": 8.1891,
-      "ma50": 7.0209
-    },
-    {
-      "date": "2026-09-01",
-      "schwab": 130035.34,
-      "total": 131032.34,
-      "share_price": 7.7111,
-      "ma50": 7.0385
-    },
-    {
-      "date": "2026-09-02",
-      "schwab": 135160.64,
-      "total": 136157.64,
-      "share_price": 8.0127,
-      "ma50": 7.0632
-    },
-    {
-      "date": "2026-09-01",
-      "schwab": 134903.87,
-      "total": 135900.87,
-      "share_price": 7.9976,
-      "ma50": 7.0927
-    },
-    {
-      "date": "2026-09-03",
-      "schwab": 143430.86,
-      "total": 144427.86,
-      "share_price": 8.4994,
-      "ma50": 7.134
-    },
-    {
-      "date": "2026-09-02",
-      "schwab": 136230.64,
-      "total": 137227.64,
-      "share_price": 8.0757,
-      "ma50": 7.1654
+      "date": "2026-04-11",
+      "schwab": 119337.18,
+      "total": 120334.18,
+      "share_price": 6.7863,
+      "ma50": 6.4158
     },
     {
       "date": "2026-09-04",
-      "schwab": 140184.22,
-      "total": 141181.22,
-      "share_price": 8.3084,
-      "ma50": 7.1984
-    },
-    {
-      "date": "2026-09-03",
-      "schwab": 142985.92,
-      "total": 143982.92,
-      "share_price": 8.4732,
-      "ma50": 7.2364
-    },
-    {
-      "date": "2026-09-04",
-      "schwab": 140184.22,
-      "total": 141181.22,
-      "share_price": 8.3084,
-      "ma50": 7.2689
+      "schwab": 140153.22,
+      "total": 141150.22,
+      "share_price": 8.3065,
+      "ma50": 6.4557
     },
     {
       "date": "2026-09-08",
-      "schwab": 138371.94,
-      "total": 139368.94,
-      "share_price": 8.2017,
-      "ma50": 7.2973
+      "schwab": 138373.94,
+      "total": 139370.94,
+      "share_price": 8.2018,
+      "ma50": 6.4935
     },
     {
-      "date": "2026-09-04",
-      "schwab": 139864.22,
-      "total": 140861.22,
-      "share_price": 8.2895,
-      "ma50": 7.3224
+      "date": "2026-09-09",
+      "schwab": 137754.89,
+      "total": 138751.89,
+      "share_price": 8.1654,
+      "ma50": 6.5368
     }
   ],
   "chart_alltime": [
@@ -879,57 +879,37 @@
       "share_price": 6.2771
     },
     {
-      "date": "2026-04-01",
-      "total": 134193.7,
-      "share_price": 7.8972
-    },
-    {
-      "date": "2026-05-01",
-      "total": 135008.93,
-      "share_price": 7.9451
-    },
-    {
-      "date": "2026-06-01",
-      "total": 111749.13,
-      "share_price": 6.5763
-    },
-    {
-      "date": "2026-07-01",
-      "total": 112016.95,
-      "share_price": 6.5921
-    },
-    {
-      "date": "2026-08-01",
-      "total": 139153.9,
-      "share_price": 8.1891
+      "date": "2026-04-11",
+      "total": 120334.18,
+      "share_price": 6.7863
     },
     {
       "date": "2026-09-01",
-      "total": 140861.22,
-      "share_price": 8.2895
+      "total": 138751.89,
+      "share_price": 8.1654
     }
   ],
   "holdings": {
-    "as_of": "2026-09-04",
+    "as_of": "2026-09-09",
     "source": "Yahoo Finance (live prices)",
-    "total_value": 139864.22,
+    "total_value": 137754.89,
     "total_cost": 171013.31,
-    "total_gain_pct": -18.21,
-    "total_gain_usd": -31149.09,
+    "total_gain_pct": -19.45,
+    "total_gain_usd": -33258.42,
     "positions": [
       {
         "symbol": "IBIT",
         "description": "ISHARES BITCOIN TRUST ETF",
         "asset_type": "ETF",
         "qty": 2337,
-        "price": 45.23,
-        "market_value": 105702.51,
-        "pct_of_portfolio": 75.58,
+        "price": 44.29,
+        "market_value": 103505.73,
+        "pct_of_portfolio": 75.14,
         "cost_basis": 128336.15,
-        "gain_pct": -17.64,
-        "gain_usd": -22633.64,
-        "day_chg_pct": -2.42,
-        "day_chg_usd": -2617.44,
+        "gain_pct": -19.35,
+        "gain_usd": -24830.42,
+        "day_chg_pct": -0.23,
+        "day_chg_usd": -233.7,
         "wk52_low": null,
         "wk52_high": null
       },
@@ -938,14 +918,14 @@
         "description": "ADVANCED MICRO DEVIC",
         "asset_type": "Equity",
         "qty": 14,
-        "price": 477.57,
-        "market_value": 6685.98,
-        "pct_of_portfolio": 4.78,
+        "price": 521.1,
+        "market_value": 7295.33,
+        "pct_of_portfolio": 5.3,
         "cost_basis": 3474.94,
-        "gain_pct": 92.41,
-        "gain_usd": 3211.04,
-        "day_chg_pct": 4.69,
-        "day_chg_usd": 299.74,
+        "gain_pct": 109.94,
+        "gain_usd": 3820.39,
+        "day_chg_pct": 3.04,
+        "day_chg_usd": 214.97,
         "wk52_low": null,
         "wk52_high": null
       },
@@ -954,30 +934,14 @@
         "description": "PALANTIR TECHNOLOGIES INCLASS CLASS A",
         "asset_type": "Equity",
         "qty": 24,
-        "price": 174.33,
-        "market_value": 4183.92,
-        "pct_of_portfolio": 2.99,
+        "price": 169.53,
+        "market_value": 4068.72,
+        "pct_of_portfolio": 2.95,
         "cost_basis": 4358.92,
-        "gain_pct": -4.01,
-        "gain_usd": -175.0,
-        "day_chg_pct": -4.49,
-        "day_chg_usd": -196.8,
-        "wk52_low": null,
-        "wk52_high": null
-      },
-      {
-        "symbol": "HOOD",
-        "description": "ROBINHOOD MKTS INC CLASS CLASS A",
-        "asset_type": "Equity",
-        "qty": 32,
-        "price": 122.11,
-        "market_value": 3907.52,
-        "pct_of_portfolio": 2.79,
-        "cost_basis": 4148.63,
-        "gain_pct": -5.81,
-        "gain_usd": -241.11,
-        "day_chg_pct": -2.09,
-        "day_chg_usd": -83.52,
+        "gain_pct": -6.66,
+        "gain_usd": -290.2,
+        "day_chg_pct": -0.45,
+        "day_chg_usd": -18.48,
         "wk52_low": null,
         "wk52_high": null
       },
@@ -986,14 +950,30 @@
         "description": "TESLA INC",
         "asset_type": "Equity",
         "qty": 11,
-        "price": 354.08,
-        "market_value": 3894.88,
-        "pct_of_portfolio": 2.78,
+        "price": 367.81,
+        "market_value": 4045.91,
+        "pct_of_portfolio": 2.94,
         "cost_basis": 4694.07,
-        "gain_pct": -17.03,
-        "gain_usd": -799.19,
-        "day_chg_pct": -5.92,
-        "day_chg_usd": -245.19,
+        "gain_pct": -13.81,
+        "gain_usd": -648.16,
+        "day_chg_pct": -0.1,
+        "day_chg_usd": -3.85,
+        "wk52_low": null,
+        "wk52_high": null
+      },
+      {
+        "symbol": "HOOD",
+        "description": "ROBINHOOD MKTS INC CLASS CLASS A",
+        "asset_type": "Equity",
+        "qty": 32,
+        "price": 115.28,
+        "market_value": 3688.96,
+        "pct_of_portfolio": 2.68,
+        "cost_basis": 4148.63,
+        "gain_pct": -11.08,
+        "gain_usd": -459.67,
+        "day_chg_pct": -1.76,
+        "day_chg_usd": -65.92,
         "wk52_low": null,
         "wk52_high": null
       },
@@ -1002,14 +982,14 @@
         "description": "AST SPACEMOBILE INC CLASS CLASS A",
         "asset_type": "Equity",
         "qty": 49,
-        "price": 62.31,
-        "market_value": 3053.19,
-        "pct_of_portfolio": 2.18,
+        "price": 62.42,
+        "market_value": 3058.58,
+        "pct_of_portfolio": 2.22,
         "cost_basis": 3611.3,
-        "gain_pct": -15.45,
-        "gain_usd": -558.11,
-        "day_chg_pct": 0.29,
-        "day_chg_usd": 8.82,
+        "gain_pct": -15.31,
+        "gain_usd": -552.72,
+        "day_chg_pct": -5.6,
+        "day_chg_usd": -181.3,
         "wk52_low": null,
         "wk52_high": null
       },
@@ -1018,14 +998,14 @@
         "description": "TAIWAN SEMICONDUCTOR M FSPONSORED ADR 1 ADR REPS 5 ORD SHS",
         "asset_type": "Equity",
         "qty": 7,
-        "price": 428.91,
-        "market_value": 3002.37,
-        "pct_of_portfolio": 2.15,
+        "price": 435.36,
+        "market_value": 3047.52,
+        "pct_of_portfolio": 2.21,
         "cost_basis": 2074.45,
-        "gain_pct": 44.73,
-        "gain_usd": 927.92,
-        "day_chg_pct": 2.85,
-        "day_chg_usd": 83.3,
+        "gain_pct": 46.91,
+        "gain_usd": 973.07,
+        "day_chg_pct": -0.83,
+        "day_chg_usd": -25.48,
         "wk52_low": null,
         "wk52_high": null
       },
@@ -1034,14 +1014,14 @@
         "description": "DUOLINGO INC CLASS A",
         "asset_type": "Equity",
         "qty": 16,
-        "price": 154.46,
-        "market_value": 2471.36,
-        "pct_of_portfolio": 1.77,
+        "price": 139.24,
+        "market_value": 2227.84,
+        "pct_of_portfolio": 1.62,
         "cost_basis": 2830.48,
-        "gain_pct": -12.69,
-        "gain_usd": -359.12,
-        "day_chg_pct": -2.75,
-        "day_chg_usd": -69.76,
+        "gain_pct": -21.29,
+        "gain_usd": -602.64,
+        "day_chg_pct": -4.88,
+        "day_chg_usd": -114.4,
         "wk52_low": null,
         "wk52_high": null
       },
@@ -1050,30 +1030,30 @@
         "description": "CALL ISHR BITCOIN TR ETF$45 EXP 01/15/27",
         "asset_type": "Option",
         "qty": 5,
-        "price": 4.55,
-        "market_value": 2275.0,
-        "pct_of_portfolio": 1.63,
+        "price": 4.35,
+        "market_value": 2175.0,
+        "pct_of_portfolio": 1.58,
         "cost_basis": 8878.3,
-        "gain_pct": -74.38,
-        "gain_usd": -6603.3,
-        "day_chg_pct": -9.0,
-        "day_chg_usd": -225.0,
-        "wk52_low": 4.2,
-        "wk52_high": 4.62
+        "gain_pct": -75.5,
+        "gain_usd": -6703.3,
+        "day_chg_pct": -4.4,
+        "day_chg_usd": -100.0,
+        "wk52_low": 4.3,
+        "wk52_high": 4.8
       },
       {
         "symbol": "HIMS",
         "description": "HIMS & HERS HEALTH INC CLASS CLASS A",
         "asset_type": "Equity",
         "qty": 69,
-        "price": 27.71,
-        "market_value": 1911.99,
-        "pct_of_portfolio": 1.37,
+        "price": 27.9,
+        "market_value": 1925.1,
+        "pct_of_portfolio": 1.4,
         "cost_basis": 2715.12,
-        "gain_pct": -29.58,
-        "gain_usd": -803.13,
-        "day_chg_pct": -0.4,
-        "day_chg_usd": -7.59,
+        "gain_pct": -29.1,
+        "gain_usd": -790.02,
+        "day_chg_pct": -0.96,
+        "day_chg_usd": -18.63,
         "wk52_low": null,
         "wk52_high": null
       },
@@ -1082,14 +1062,14 @@
         "description": "OKLO INC CLASS A",
         "asset_type": "Equity",
         "qty": 30,
-        "price": 41.27,
-        "market_value": 1238.1,
-        "pct_of_portfolio": 0.89,
+        "price": 42.57,
+        "market_value": 1277.1,
+        "pct_of_portfolio": 0.93,
         "cost_basis": 2147.55,
-        "gain_pct": -42.35,
-        "gain_usd": -909.45,
-        "day_chg_pct": 3.59,
-        "day_chg_usd": 42.9,
+        "gain_pct": -40.53,
+        "gain_usd": -870.45,
+        "day_chg_pct": -1.71,
+        "day_chg_usd": -22.2,
         "wk52_low": null,
         "wk52_high": null
       },
@@ -1098,14 +1078,14 @@
         "description": "STRATEGY INC CLASS A",
         "asset_type": "Equity",
         "qty": 8,
-        "price": 142.8,
-        "market_value": 1142.4,
-        "pct_of_portfolio": 0.82,
+        "price": 132.7,
+        "market_value": 1061.6,
+        "pct_of_portfolio": 0.77,
         "cost_basis": 1612.08,
-        "gain_pct": -29.14,
-        "gain_usd": -469.68,
-        "day_chg_pct": -1.39,
-        "day_chg_usd": -16.16,
+        "gain_pct": -34.15,
+        "gain_usd": -550.48,
+        "day_chg_pct": -2.8,
+        "day_chg_usd": -30.56,
         "wk52_low": null,
         "wk52_high": null
       },
@@ -1114,32 +1094,32 @@
         "description": "CALL ISHR BITCOIN TR ETF$45 EXP 12/17/27",
         "asset_type": "Option",
         "qty": 1,
-        "price": 10.28,
-        "market_value": 1027.5,
+        "price": 10.03,
+        "market_value": 1002.5,
         "pct_of_portfolio": 0.73,
         "cost_basis": 2845.66,
-        "gain_pct": -63.89,
-        "gain_usd": -1818.16,
-        "day_chg_pct": -4.42,
-        "day_chg_usd": -47.5,
+        "gain_pct": -64.77,
+        "gain_usd": -1843.16,
+        "day_chg_pct": -2.39,
+        "day_chg_usd": -24.5,
         "wk52_low": 10.0,
-        "wk52_high": 10.5
+        "wk52_high": 10.68
       },
       {
         "symbol": "IBIT 01/21/2028 40.00 P",
         "description": "PUT ISHR BITCOIN TR ETF $40 EXP 01/21/28",
         "asset_type": "Option",
         "qty": -1,
-        "price": 6.33,
-        "market_value": -632.5,
+        "price": 6.25,
+        "market_value": -625.0,
         "pct_of_portfolio": null,
         "cost_basis": -714.34,
-        "gain_pct": 11.46,
-        "gain_usd": 81.84,
-        "day_chg_pct": 2.68,
-        "day_chg_usd": -16.5,
-        "wk52_low": 6.3,
-        "wk52_high": 6.4
+        "gain_pct": 12.51,
+        "gain_usd": 89.34,
+        "day_chg_pct": -0.79,
+        "day_chg_usd": 5.0,
+        "wk52_low": 6.15,
+        "wk52_high": 6.2
       }
     ]
   }
