@@ -665,8 +665,8 @@ function populate(d) {
   $('mem-tbody').innerHTML = rows;
 
   $('mem-totals').innerHTML = [
-    statCard('Total Class A Shares', d.shares.total_a.toLocaleString('en-US',{minimumFractionDigits:2}), '7 members'),
-    statCard('Total Class B Shares', d.shares.total_b.toLocaleString('en-US',{minimumFractionDigits:4}), '7 members'),
+    statCard('Total Class A Shares', d.shares.total_a.toLocaleString('en-US',{minimumFractionDigits:2}), `${Object.keys(d.members).length} members`),
+    statCard('Total Class B Shares', d.shares.total_b.toLocaleString('en-US',{minimumFractionDigits:4}), `${Object.keys(d.members).length} members`),
     statCard('Total Shares Outstanding', d.shares.total.toLocaleString('en-US',{minimumFractionDigits:2}), 'Class A + Class B'),
   ].join('');
 
