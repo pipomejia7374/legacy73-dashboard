@@ -36,8 +36,12 @@ POSITIONS = [
 ]
 
 # ── Fund Parameters ──────────────────────────────────────────────────────────
-TOTAL_SHARES   = 16992.6672303254   # Updated 2026-04-14: 739.239 shares retired (tax dilution)
-OTHER_ASSETS   = 997.0              # Non-Schwab assets (cash/other); update if changed
+TOTAL_SHARES   = 17199.2825757395   # Updated 2026-09-23: +206.6153 Class B issued (P.Gómez re-entry)
+OTHER_ASSETS   = 2346.97            # Regions 0179 balance. MONTHLY ROUTINE: refresh from bank.
+MARGIN_CASH    = -12461.33          # Schwab cash/margin balance (NEGATIVE = debit).
+                                    # MONTHLY ROUTINE: refresh from Schwab Positions page
+                                    # ("Total cash & cash invest"). Accrues ~-$120/mo interest.
+                                    # Omitting this overstated NAV by ~9% (Apr-Sep 2026).
 INCEPTION_DATE = "2024-01-01"
 
 # Updated 2026-04-14: share dilution for 2025 LTCG tax settlement at $6.79/share
@@ -51,6 +55,7 @@ MEMBERS = {
     "vargas":          {"name": "Vargas",          "shares_a":  609.0000, "shares_b":   91.8480},
     "familia_gump":    {"name": "Familia Gump",    "shares_a":  516.4477, "shares_b":    0.0000},
     "gump_individual": {"name": "Gump Individual", "shares_a":    0.0000, "shares_b":  149.2562},
+    "pjg":             {"name": "PJG",             "shares_a":    0.0000, "shares_b":  206.6153},
 }
 
 
@@ -155,11 +160,21 @@ def moving_average(series, n):
     return round(sum(series[-n:]) / n, 4)
 
 
-def compute_schwab_value(prices):
+def compute_positions_value(prices):
+    """Market value of the positions alone (no cash)."""
     return round(sum(
         pos["qty"] * prices.get(pos["symbol"], 0) * pos["multiplier"]
         for pos in POSITIONS
     ), 2)
+
+
+def compute_schwab_value(prices):
+    """Total Schwab ACCOUNT value = positions + cash/margin balance.
+
+    Must include MARGIN_CASH: it is a debit (negative) and excluding it
+    overstates NAV. Matches Schwab's "Total accounts value".
+    """
+    return round(compute_positions_value(prices) + MARGIN_CASH, 2)
 
 
 def pct_chg(curr, prev):
@@ -235,7 +250,7 @@ def compute_metrics(schwab_value, data_date, history):
 
 # ── data.json Builder ─────────────────────────────────────────────────────────
 
-def build_data_json(data_date, schwab_value, prices, wk52, day_changes, metrics, history):
+def build_data_json(data_date, schwab_value, positions_value, prices, wk52, day_changes, metrics, history):
     sp = metrics["share_price"]
 
     # Members
@@ -293,7 +308,7 @@ def build_data_json(data_date, schwab_value, prices, wk52, day_changes, metrics,
         cb    = pos["cost_basis"]
         gain_usd = round(mv - cb, 2)
         gain_pct = round((mv - cb) / abs(cb) * 100, 2) if cb else None
-        pct_port = round(mv / schwab_value * 100, 2) if mv > 0 and schwab_value else None
+        pct_port = round(mv / positions_value * 100, 2) if mv > 0 and positions_value else None
         dc = day_changes.get(sym, {})
         w  = wk52.get(sym, {})
         positions.append({
@@ -314,7 +329,7 @@ def build_data_json(data_date, schwab_value, prices, wk52, day_changes, metrics,
         })
     positions.sort(key=lambda x: abs(x["market_value"]), reverse=True)
 
-    total_gain_usd = round(schwab_value - total_cost, 2)
+    total_gain_usd = round(positions_value - total_cost, 2)
     total_gain_pct = round(total_gain_usd / total_cost * 100, 2) if total_cost else 0.0
 
     return {
@@ -350,7 +365,7 @@ def build_data_json(data_date, schwab_value, prices, wk52, day_changes, metrics,
         "holdings": {
             "as_of":          data_date,
             "source":         "Yahoo Finance (live prices)",
-            "total_value":    schwab_value,
+            "total_value":    positions_value,
             "total_cost":     round(total_cost, 2),
             "total_gain_pct": total_gain_pct,
             "total_gain_usd": total_gain_usd,
@@ -364,10 +379,15 @@ def build_data_json(data_date, schwab_value, prices, wk52, day_changes, metrics,
 def update_history(history, data_date, schwab_value, total_value, share_price, metrics, chart_alltime):
     daily = history.setdefault("daily", [])
     entry = {"date": data_date, "schwab": schwab_value, "total": total_value, "share_price": share_price}
-    if daily and daily[-1]["date"] == data_date:
-        daily[-1] = entry   # same-day re-run: overwrite
+    # Replace by DATE anywhere in the series, not just the last element.
+    # The old last-element-only check let concurrent Actions runs append the
+    # same date twice (10 duplicated dates, 2026-09-08..21). Then sort.
+    idx = next((i for i, e in enumerate(daily) if e["date"] == data_date), None)
+    if idx is not None:
+        daily[idx] = entry
     else:
         daily.append(entry)
+    daily.sort(key=lambda e: e["date"])
     history["daily"]   = daily[-365:]
     history["monthly"] = chart_alltime
     history["max_price"] = metrics["max_price"]
@@ -401,14 +421,16 @@ def main():
 
     # Avoid duplicate entries (same-day re-run) unless --force passed
     daily = history.get("daily", [])
-    if daily and daily[-1]["date"] == data_date and "--force" not in sys.argv:
+    if any(e["date"] == data_date for e in daily) and "--force" not in sys.argv:
         print(f"Already up to date for {data_date}. Pass --force to override.")
         return 0
 
     # Compute
+    positions_value = compute_positions_value(prices)
     schwab_value = compute_schwab_value(prices)
     metrics      = compute_metrics(schwab_value, data_date, history)
-    data         = build_data_json(data_date, schwab_value, prices, wk52, day_changes, metrics, history)
+    data         = build_data_json(data_date, schwab_value, positions_value, prices, wk52,
+                                   day_changes, metrics, history)
 
     # Update history
     history = update_history(
@@ -424,6 +446,7 @@ def main():
     print(f"data.json    written — {data_path.stat().st_size:,} bytes")
     print(f"history.json written — {history_path.stat().st_size:,} bytes  ({len(history['daily'])} daily entries)")
     print(f"  Date: {data_date} | Share Price: ${metrics['share_price']:.4f} | NAV: ${metrics['today_total']:,.2f}")
+    print(f"  Positions: ${positions_value:,.2f} | Margin: ${MARGIN_CASH:,.2f} | Regions: ${OTHER_ASSETS:,.2f}")
     print(f"  Schwab: ${schwab_value:,.2f} | MA30: {metrics['ma30']} | MA50: {metrics['ma50']} | MA90: {metrics['ma90']}")
     return 0
 
