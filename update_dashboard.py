@@ -55,7 +55,7 @@ MEMBERS = {
     "vargas":          {"name": "Vargas",          "shares_a":  609.0000, "shares_b":   91.8480},
     "familia_gump":    {"name": "Familia Gump",    "shares_a":  516.4477, "shares_b":    0.0000},
     "gump_individual": {"name": "Gump Individual", "shares_a":    0.0000, "shares_b":  149.2562},
-    "pjg":             {"name": "PJG",             "shares_a":    0.0000, "shares_b":  206.6153},
+    "pepo":            {"name": "Pepo",            "shares_a":    0.0000, "shares_b":  206.6153},
 }
 
 
