@@ -36,9 +36,10 @@ POSITIONS = [
 ]
 
 # ── Fund Parameters ──────────────────────────────────────────────────────────
-TOTAL_SHARES   = 17199.2825757395   # Updated 2026-09-23: +206.6153 Class B issued (P.Gómez re-entry)
-OTHER_ASSETS   = 2346.97            # Regions 0179 balance. MONTHLY ROUTINE: refresh from bank.
-MARGIN_CASH    = -12461.33          # Schwab cash/margin balance (NEGATIVE = debit).
+TOTAL_SHARES   = 17201.8257527327   # Updated 2026-11-03: P.Gómez issuance restated to 209.1585
+                                    # Class B (Sep-1 NAV adjusted for the 8/14 Prats Fernandez payable)
+OTHER_ASSETS   = 821.97             # Regions 0179 balance. MONTHLY ROUTINE: refresh from bank.
+MARGIN_CASH    = -12715.15          # Schwab cash/margin balance (NEGATIVE = debit). Refreshed 2026-11-03.
                                     # MONTHLY ROUTINE: refresh from Schwab Positions page
                                     # ("Total cash & cash invest"). Accrues ~-$120/mo interest.
                                     # Omitting this overstated NAV by ~9% (Apr-Sep 2026).
@@ -55,7 +56,7 @@ MEMBERS = {
     "vargas":          {"name": "Vargas",          "shares_a":  609.0000, "shares_b":   91.8480},
     "familia_gump":    {"name": "Familia Gump",    "shares_a":  516.4477, "shares_b":    0.0000},
     "gump_individual": {"name": "Gump Individual", "shares_a":    0.0000, "shares_b":  149.2562},
-    "pepo":            {"name": "Pepo",            "shares_a":    0.0000, "shares_b":  206.6153},
+    "pepo":            {"name": "Pepo",            "shares_a":    0.0000, "shares_b":  209.1585},
 }
 
 
