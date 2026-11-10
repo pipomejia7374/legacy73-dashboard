@@ -30,16 +30,17 @@ POSITIONS = [
     {"symbol": "OKLO",                "display": "OKLO",                    "description": "OKLO INC CLASS A",                                            "asset_type": "Equity", "qty":    30, "cost_basis":   2147.55, "multiplier": 1},
     {"symbol": "DUOL",                "display": "DUOL",                    "description": "DUOLINGO INC CLASS A",                                        "asset_type": "Equity", "qty":    16, "cost_basis":   2830.48, "multiplier": 1},
     {"symbol": "MSTR",                "display": "MSTR",                    "description": "STRATEGY INC CLASS A",                                        "asset_type": "Equity", "qty":     8, "cost_basis":   1612.08, "multiplier": 1},
+    {"symbol": "NVDA",                "display": "NVDA",                    "description": "NVIDIA CORP",                                                 "asset_type": "Equity", "qty":    11, "cost_basis":   1850.86, "multiplier": 1},  # bought 2026-11-10
     {"symbol": "IBIT270115C00045000", "display": "IBIT 01/15/2027 45.00 C", "description": "CALL ISHR BITCOIN TR ETF$45 EXP 01/15/27",                   "asset_type": "Option", "qty":     5, "cost_basis":   8878.30, "multiplier": 100},
     {"symbol": "IBIT271217C00045000", "display": "IBIT 12/17/2027 45.00 C", "description": "CALL ISHR BITCOIN TR ETF$45 EXP 12/17/27",                   "asset_type": "Option", "qty":     1, "cost_basis":   2845.66, "multiplier": 100},
     {"symbol": "IBIT280121P00040000", "display": "IBIT 01/21/2028 40.00 P", "description": "PUT ISHR BITCOIN TR ETF $40 EXP 01/21/28",                   "asset_type": "Option", "qty":    -1, "cost_basis":   -714.34, "multiplier": 100},
 ]
 
 # ── Fund Parameters ──────────────────────────────────────────────────────────
-TOTAL_SHARES   = 17201.8257527327   # Updated 2026-11-03: P.Gómez issuance restated to 209.1585
-                                    # Class B (Sep-1 NAV adjusted for the 8/14 Prats Fernandez payable)
-OTHER_ASSETS   = 821.97             # Regions 0179 balance. MONTHLY ROUTINE: refresh from bank.
-MARGIN_CASH    = -12715.15          # Schwab cash/margin balance (NEGATIVE = debit). Refreshed 2026-11-03.
+TOTAL_SHARES   = 17516.2355001684   # Updated 2026-11-10: +314.4097 Class B (P.Gómez 2nd
+                                    # subscription, $2,000 at the 2026-11-09 NAV of $6.361126)
+OTHER_ASSETS   = 841.97             # Regions 0179 balance. MONTHLY ROUTINE: refresh from bank.
+MARGIN_CASH    = -12566.01          # Schwab cash/margin balance (NEGATIVE = debit). Refreshed 2026-11-10.
                                     # MONTHLY ROUTINE: refresh from Schwab Positions page
                                     # ("Total cash & cash invest"). Accrues ~-$120/mo interest.
                                     # Omitting this overstated NAV by ~9% (Apr-Sep 2026).
@@ -56,7 +57,7 @@ MEMBERS = {
     "vargas":          {"name": "Vargas",          "shares_a":  609.0000, "shares_b":   91.8480},
     "familia_gump":    {"name": "Familia Gump",    "shares_a":  516.4477, "shares_b":    0.0000},
     "gump_individual": {"name": "Gump Individual", "shares_a":    0.0000, "shares_b":  149.2562},
-    "pepo":            {"name": "Pepo",            "shares_a":    0.0000, "shares_b":  209.1585},
+    "pepo":            {"name": "Pepo",            "shares_a":    0.0000, "shares_b":  523.5683},
 }
 
 
@@ -419,6 +420,18 @@ def main():
 
     # Fetch prices
     data_date, prices, wk52, day_changes = fetch_all_prices()
+
+    # Guard: a failed price fetch silently values the position at zero, which
+    # publishes an understated NAV. Abort instead of writing bad numbers.
+    # (Added 2026-11-10 after a Yahoo 401 priced 5 IBIT calls at $0 = -$775.)
+    missing = [p["display"] for p in POSITIONS
+               if p["qty"] != 0 and not prices.get(p["symbol"])]
+    if missing and "--allow-missing-prices" not in sys.argv:
+        print("ERROR: no price for: " + ", ".join(missing), file=sys.stderr)
+        print("Refusing to write an understated NAV. Re-run, or pass "
+              "--allow-missing-prices if the position really is worthless.",
+              file=sys.stderr)
+        return 1
 
     # Avoid duplicate entries (same-day re-run) unless --force passed
     daily = history.get("daily", [])
