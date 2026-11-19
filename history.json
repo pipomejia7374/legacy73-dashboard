@@ -2,8 +2,8 @@
   "inception_price": 7.7434,
   "max_price": 12.5475,
   "max_date": "2025-10-06",
-  "min_price": 5.7144,
-  "min_date": "2026-06-25",
+  "min_price": 5.6394,
+  "min_date": "2026-11-18",
   "daily": [
     {
       "date": "2026-01-11",
@@ -1774,6 +1774,12 @@
       "schwab": 99701.27,
       "total": 100543.24,
       "share_price": 5.74
+    },
+    {
+      "date": "2026-11-18",
+      "schwab": 97939.77,
+      "total": 98781.74,
+      "share_price": 5.6394
     }
   ],
   "monthly": [
@@ -1949,8 +1955,8 @@
     },
     {
       "date": "2026-11-01",
-      "total": 100543.24,
-      "share_price": 5.74
+      "total": 98781.74,
+      "share_price": 5.6394
     }
   ]
 }
